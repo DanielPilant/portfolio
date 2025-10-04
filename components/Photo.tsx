@@ -17,7 +17,7 @@ const Photo = () => {
         {/* image inside a smaller circle */}
         <div className="relative w-[200px] xl:w-[398px] aspect-square rounded-full overflow-hidden z-10">
           <Image
-            src="/assets/images/Me.png"
+            src="/assets/images/Me2.png"
             alt="Daniel Pilant"
             fill
             priority
