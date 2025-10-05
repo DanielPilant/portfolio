@@ -2,14 +2,11 @@
 import Image from "next/image";
 
 import {
-
   FaFigma,
-
   FaJava,
-
   FaDatabase,
   FaGithub,
-  FaMicrosoft,
+  FaCode,
   FaChalkboardTeacher,
   FaLaptopCode,
   FaUsers,
@@ -121,7 +118,7 @@ const education = {
 const skills = {
   title: "My skills",
   description:
-    "Technologies and strengths I bring as a software engineer, developer, and community leader.",
+    "",
   items: [
     // 🌐 Web & Frontend
     //{ icon: <FaHtml5 className="w-8 h-8" />, name: "HTML5" },
@@ -151,7 +148,7 @@ const skills = {
     // 🔧 Tools
     { icon: <FaGithub className="w-8 h-8" />, name: "Git & GitHub" },
     {
-      icon: <FaMicrosoft className="w-8 h-8" />,
+      icon: <FaCode className="w-8 h-8" />,
       name: "Visual Studio / VS Code",
     },
     { icon: <FaFigma className="w-8 h-8" />, name: "Figma" },
@@ -206,7 +203,7 @@ const Resume = () => {
             {/* activities */}
             <TabsContent value="activities" className="mtmx-full">
               <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                <ScrollArea className="h-[690px]">
+                <ScrollArea className="h-[670px]">
                   <h3 className="text-4xl font-bold">{activities.title}</h3>
                   <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
                     {activities.description}
@@ -323,9 +320,11 @@ const Resume = () => {
                         <TooltipProvider delayDuration={100}>
                           <Tooltip>
                             <TooltipTrigger className="w-full h-[100px] bg-[#232329] rounded-xl flex justify-center items-center group">
-                              <div className="text-6xl group-hover:text-accent transition-all duration-300">
+                              <div className="flex flex-col items-center text-6xl group-hover:text-accent transition-all duration-300">
                                 {skill.icon}
+                                <span className="text-sm mt-4 text-white/60">{skill.name}</span>
                               </div>
+                              
                             </TooltipTrigger>
                             <TooltipContent>
                               <p>{skill.name}</p>

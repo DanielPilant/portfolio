@@ -54,8 +54,8 @@ const contact = () => {
               </div>
               {/* textarea */}
               <Textarea className="h-[200px]" placeholder="Type your messege here" />
-              <Button className="max-w-40 " >
-                Send Message
+              <Button className="max-w-80 " >
+                Send Message (in progress)
               </Button>
             </form>
           </div>
@@ -64,7 +64,7 @@ const contact = () => {
             <ul className="flex flex-col gap-10">
               {info.map((item, index) => {
                 return <li key={index} className="flex items-center gap-6">
-                  <div className="w-[52px h-[52px] xl:w-[72px] bg-[#27272c] text-accent flex items-center justify-center">
+                  <div className="w-[52px h-[52px] xl:w-[72px] bg-[#27272c] text-accent flex items-center justify-center px-5">
                     <div>{item.icon}</div>
                   </div>
                   <div>

@@ -15,21 +15,34 @@ const Home = () => {
           <div className="text-center xl:text-left order-2 xl:order-none ">
             <span>Software Developer</span>
             <h1 className="mb-6 mt-4">
-              Hi, I&apos;m <br />{" "}
+              Hello, I&apos;m <br />{" "}
               <span className="text-accent">Daniel Pilant</span>
             </h1>
             <p className="max-w-[500px] mb-9 text-white">
-              Software engineer focused on clean, impactful solutions. I build
-              apps, tools, and rendering engines that blend technical depth with
-              thoughtful design. As the founder of DevLev, I lead student
-              developers bridging academia and industry, while mentoring others
-              through Perach. My aim is to make technology both powerful and
-              human-centered.
+              I am a third-year software engineering student at the Lev Academic
+              Center. In addition to my academic studies, I develop my talents
+              in doing practical programming projects, taking practical and
+              up-to-date courses in development and programming, such as the
+              Flutter application development course at Udemy and the Fullstack
+              course at the Lev Academic Center. In addition, as a contribution
+              to the community, I specialize in tutoring, mentoring
+              and teaching with two years of experience in tutoring in schools,
+              and experience in management and leadership through the DEVLEV
+              community, which I co-founded, and which I currently manage.
             </p>
             {/* button and social links */}
-            <div className="flex flex-col xl:flex-row items-center gap-8">
-              <Button asChild size="lg" className="uppercase flex items-center gap-2">
-                <a href="/assets/resume/Daniel_Pilant_resume.pdf" download="Daniel_Pilant_resume.pdf" target="_blank" rel="noopener noreferrer">
+            <div className="flex flex-col xl:flex-row items-center mb-8 gap-6">
+              <Button
+                asChild
+                size="lg"
+                className="uppercase flex items-center gap-2"
+              >
+                <a
+                  href="/assets/resume/Daniel_Pilant_resume.pdf"
+                  download="Daniel_Pilant_resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <span>Download resume</span>
                   <FiDownload className="text-xl" />
                 </a>
@@ -43,6 +56,11 @@ const Home = () => {
                 />
               </div>
             </div>
+
+            {/* snake github animation */}
+            {/* <div className="">
+              github snake game
+            </div> */}
           </div>
 
           {/* photo */}
