@@ -33,7 +33,7 @@ const projects = [
       { name: "Material Design" },
       { name: "WebView2" },
     ],
-    image: "/assets/images/assets/minip_windows_1.png",
+    image: "/assets/images/mission_force_2.png",
     live: "",
     github: "https://github.com/DanielPilant/dotNet5785_1426_2126",
   },
