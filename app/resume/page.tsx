@@ -1,18 +1,12 @@
 "use client";
 import Image from "next/image";
-import { time } from "console";
-import { it } from "node:test";
-import { title } from "process";
+
 import {
-  FaHtml5,
-  FaCss3,
-  FaJs,
-  FaReact,
+
   FaFigma,
-  FaNodeJs,
-  FaCss3Alt,
+
   FaJava,
-  FaPython,
+
   FaDatabase,
   FaGithub,
   FaMicrosoft,
@@ -85,7 +79,7 @@ const activities = {
         "DevLev is a student-led tech community I co-founded at the Jerusalem College of Technology. We bridge academia and industry through hands-on workshops, hack nights, and networking, giving students practical skills, real projects, and professional connections to grow as future software engineers.",
       duration: "2025 - Present",
       Image1: "/assets/images/DEVLEV.jpg",
-      image2: "/assets/images/DEVLEVMATAN.jpg",
+      Image2: "/assets/images/DEVLEVMATAN.jpg",
       Image3: "/assets/images/DEVLEVMEETUP1_2.jpg",
       Image4: "/assets/images/DEVLEVMEETUP1.jpg",
     },
@@ -96,7 +90,7 @@ const activities = {
         "As part of the national Perach program, I served as a mentor and teacher for school students, providing academic support and personal guidance. Through one-on-one and group sessions, I helped students strengthen their skills, build confidence, and succeed in their studies while serving as a positive role model.",
       duration: "2023 - 2025",
       Image1: "/assets/images/SCHOOLCER.jpg",
-      image2: "/assets/images/SCHOOLCHACKATHON.jpg",
+      Image2: "/assets/images/SCHOOLCHACKATHON.jpg",
       Image3: "/assets/images/SCHOOLPROJECT1.jpg",
       Image4: "/assets/images/teacher.jpg",
     },
@@ -221,7 +215,7 @@ const Resume = () => {
                     {activities.items.map((item, index) => {
                       const imgs = [
                         item.Image1,
-                        item.image2,
+                        item.Image2,
                         item.Image3,
                         item.Image4,
                       ].filter(Boolean);
