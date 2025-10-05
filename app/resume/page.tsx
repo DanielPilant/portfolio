@@ -73,10 +73,10 @@ const activities = {
       Description:
         "ResqDoc is an AI-assisted documentation platform built for United Hatzalah’s emergency teams. It enables first responders to automatically generate and manage medical reports in real time during rescue operations. The system focuses on speed, accuracy, and structured data collection under pressure, allowing paramedics to record vital information with minimal interaction.",
       duration: "2024",
-      Image1: "/assets/images/hackathon_1.jpg",
-      image2: "/assets/images/hackathon_2.jpg",
-      Image3: "/assets/images/hackathon_3.jpg",
-      Image4: "/assets/images/hackathon_4.jpg",
+      Image1: "/assets/images/Hackathon_1.jpg",
+      Image2: "/assets/images/Hackathon_2.jpg",
+      Image3: "/assets/images/Hackathon_3.jpg",
+      Image4: "/assets/images/Hackathon_4.jpg",
     },
     {
       institution: "DevLev - JCT's Developer Student Club",

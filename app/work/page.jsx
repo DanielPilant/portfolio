@@ -31,7 +31,7 @@ const projects = [
       { name: "Object-Oriented Design" },
       { name: "Math & Physics Algorithms" },
     ],
-    image: "/assets/images/raytracing.png",
+    image: "/assets/images/Raytracing.png",
     live: "",
     github: "",
   },
