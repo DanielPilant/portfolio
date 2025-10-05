@@ -22,6 +22,21 @@ import WorkSliderBtns from "@/components/WorkSliderBtns";
 const projects = [
   {
     num: "01",
+    category: "graphics / rendering engine",
+    title: "Java Ray Tracing Engine",
+    description:
+      "A fully custom-built ray tracing engine that simulates realistic lighting, reflections, refractions, and soft shadows. This project was driven by the goal of understanding the mathematical and physical principles behind computer graphics — building everything from scratch to master how light interacts with 3D geometry.",
+    stack: [
+      { name: "Java" },
+      { name: "Object-Oriented Design" },
+      { name: "Math & Physics Algorithms" },
+    ],
+    image: "/assets/images/raytracing.png",
+    live: "",
+    github: "",
+  },
+  {
+    num: "02",
     category: "Desktop / .NET",
     title: "MissionForce",
     description:
@@ -37,21 +52,7 @@ const projects = [
     live: "",
     github: "https://github.com/DanielPilant/dotNet5785_1426_2126",
   },
-  {
-    num: "02",
-    category: "graphics / rendering engine",
-    title: "Java Ray Tracing Engine",
-    description:
-      "A fully custom-built ray tracing engine that simulates realistic lighting, reflections, refractions, and soft shadows. This project was driven by the goal of understanding the mathematical and physical principles behind computer graphics — building everything from scratch to master how light interacts with 3D geometry.",
-    stack: [
-      { name: "Java" },
-      { name: "Object-Oriented Design" },
-      { name: "Math & Physics Algorithms" },
-    ],
-    image: "/assets/images/MINIP_2.png",
-    live: "",
-    github: "",
-  },
+  
 ];
 
 const Work = () => {

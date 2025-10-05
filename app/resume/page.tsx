@@ -34,8 +34,7 @@ import {
 // about info
 const about = {
   title: "About me",
-  description:
-    "",
+  description: "",
   info: [
     {
       fieldName: "Name",
@@ -68,6 +67,17 @@ const activities = {
   description:
     "Beyond academics, I dedicate time to community leadership and mentorship. From co-founding DevLev, a student-led developer community at JCT, to teaching and guiding students through the national Perach program, these experiences reflect my passion for empowering others, sharing knowledge, and bridging academia with real-world opportunities.",
   items: [
+    {
+      institution: "Winner - hackathon 2024 at JCT",
+      title: "3rd Place - Hackathon 2024",
+      Description:
+        "ResqDoc is an AI-assisted documentation platform built for United Hatzalah’s emergency teams. It enables first responders to automatically generate and manage medical reports in real time during rescue operations. The system focuses on speed, accuracy, and structured data collection under pressure, allowing paramedics to record vital information with minimal interaction.",
+      duration: "2024",
+      Image1: "/assets/images/hackathon_1.jpg",
+      image2: "/assets/images/hackathon_2.jpg",
+      Image3: "/assets/images/hackathon_3.jpg",
+      Image4: "/assets/images/hackathon_4.jpg",
+    },
     {
       institution: "DevLev - JCT's Developer Student Club",
       title: "Co-Founder & Manager",
@@ -202,12 +212,11 @@ const Resume = () => {
             {/* activities */}
             <TabsContent value="activities" className="mtmx-full">
               <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                <h3 className="text-4xl font-bold">{activities.title}</h3>
-                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                  {activities.description}
-                </p>
-
-                <ScrollArea className="h-[400px]">
+                <ScrollArea className="h-[690px]">
+                  <h3 className="text-4xl font-bold">{activities.title}</h3>
+                  <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
+                    {activities.description}
+                  </p>
                   <ul className="flex flex-col gap-[30px]">
                     {activities.items.map((item, index) => {
                       const imgs = [
