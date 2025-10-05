@@ -106,7 +106,7 @@
   --muted: #1e1e1e;
   --muted-foreground: #ffffff;
   --accent: #00c3ff;
-  --accent-hover: #216b81;
+  --accent-hover: #9359ff;
   --accent-foreground: #ffffff;
   --destructive: #1e1e1e;
   --border: #1e1e1e;
@@ -136,6 +136,28 @@
     h2 { @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold; }
     h3 { @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold; }
 
+}
 
+/* SCROLLBAR */
 
+/* width */
+::-webkit-scrollbar{
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--background);
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--accent); 
+  transition: background 0.2s ease-in-out;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-hover);
 }
