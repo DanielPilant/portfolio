@@ -42,7 +42,7 @@ const about = {
     {
       fieldName: "Education",
       fieldValue:
-        "Currently studying BSc in Computer Science at JCT - jerusalem College of Technology",
+        "Currently studying BSc in Computer Science at JCT - Jerusalem College of Technology",
     },
     {
       fieldName: "Languages",
