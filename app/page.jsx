@@ -68,7 +68,7 @@ const Home = () => {
             <Photo />
           </div>
         </div>
-        <div className="border-b border-white/10 mb-8 flex flex-col items-center">
+        {/* <div className="border-b border-white/10 mb-8 flex flex-col items-center">
           <h2 className="mb-6 mt-4">more about me...</h2>
 
           <div
@@ -141,8 +141,8 @@ const Home = () => {
               universes that question reality itself and mirror the struggle
               between light and darkness within us.
             </p>
-          </div>
-        </div>
+          </div> 
+        </div>*/}
       </div>
     </section>
   );
