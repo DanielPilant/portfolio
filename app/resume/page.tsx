@@ -99,11 +99,11 @@ const education = {
   icon: "/assets/resume/cap.svg",
   title: "My education",
   description:
-    "Pursuing a BSc in Computer Science at JCT, building strong foundations in software engineering while expanding skills with modern technologies like Flutter and Dart.",
+    "Pursuing a BSc in Software Engineering at JCT, building strong foundations in software engineering while expanding skills with modern technologies like Flutter and Dart.",
   items: [
     {
       institution: "Jerusalem College of Technology (JCT)",
-      title: "BSc in Computer Science",
+      title: "BSc in Software Engineering",
       duration: "2023 - Present",
     },
     {
