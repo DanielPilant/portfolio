@@ -42,7 +42,7 @@ const about = {
     {
       fieldName: "Education",
       fieldValue:
-        "Currently studying BSc in Computer Science at JCT - Jerusalem College of Technology",
+        "Currently studying BSc in Software Engineering at JCT - Jerusalem College of Technology",
     },
     {
       fieldName: "Languages",
@@ -117,8 +117,7 @@ const education = {
 // skills info
 const skills = {
   title: "My skills",
-  description:
-    "",
+  description: "",
   items: [
     // 🌐 Web & Frontend
     //{ icon: <FaHtml5 className="w-8 h-8" />, name: "HTML5" },
@@ -322,9 +321,10 @@ const Resume = () => {
                             <TooltipTrigger className="w-full h-[100px] bg-[#232329] rounded-xl flex justify-center items-center group">
                               <div className="flex flex-col items-center text-6xl group-hover:text-accent transition-all duration-300">
                                 {skill.icon}
-                                <span className="text-sm mt-4 text-white/60">{skill.name}</span>
+                                <span className="text-sm mt-4 text-white/60">
+                                  {skill.name}
+                                </span>
                               </div>
-                              
                             </TooltipTrigger>
                             <TooltipContent>
                               <p>{skill.name}</p>
