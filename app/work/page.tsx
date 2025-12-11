@@ -3,7 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BsArrowUpRight, BsGithub } from "react-icons/bs";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const projects = [
   {
@@ -12,8 +17,12 @@ const projects = [
     title: "Java Ray Tracing Engine",
     description:
       "A fully custom-built ray tracing engine that simulates realistic lighting, reflections, refractions, and soft shadows. This project was driven by the goal of understanding the mathematical and physical principles behind computer graphics — building everything from scratch to master how light interacts with 3D geometry.",
-    stack: [{ name: "Java" }, { name: "Object-Oriented Design" }, { name: "Math & Physics Algorithms" }],
-    image: "/assets/images/Raytracing.png",
+    stack: [
+      { name: "Java" },
+      { name: "Object-Oriented Design" },
+      { name: "Math & Physics Algorithms" },
+    ],
+    image: "/assets/images/assets/GoodPhotoYET2.png",
     live: "",
     github: "",
   },
@@ -23,8 +32,14 @@ const projects = [
     title: "MissionForce",
     description:
       "MissionForce is a volunteer management system built with C# and .NET 8 (WPF). It enables organizations to manage volunteers, missions, and reports efficiently, featuring a layered architecture (DAL, BL, PL) and a modern Material Design interface powered by WebView2.",
-    stack: [{ name: "C#" }, { name: ".NET 8" }, { name: "WPF" }, { name: "Material Design" }, { name: "WebView2" }],
-    image: "/assets/images/mission_force_2.png",
+    stack: [
+      { name: "C#" },
+      { name: ".NET 8" },
+      { name: "WPF" },
+      { name: "Material Design" },
+      { name: "WebView2" },
+    ],
+    image: "/assets/images/assets/minip_windows_1.png",
     live: "",
     github: "https://github.com/DanielPilant/dotNet5785_1426_2126",
   },
@@ -44,11 +59,16 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
             {project.category} project
           </h2>
 
-          <p className="mt-4 text-white/70 leading-relaxed">{project.description}</p>
+          <p className="mt-4 text-white/70 leading-relaxed">
+            {project.description}
+          </p>
 
           <div className="mt-5 flex flex-wrap gap-2">
             {project.stack.map((tech, i) => (
-              <span key={i} className="px-3 py-1 rounded-full bg-white/5 text-white/80 text-sm border border-white/10">
+              <span
+                key={i}
+                className="px-3 py-1 rounded-full bg-white/5 text-white/80 text-sm border border-white/10"
+              >
                 {tech.name}
               </span>
             ))}
@@ -67,14 +87,21 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
                 <BsArrowUpRight className="text-lg" />
               </Link>
             ) : (
-              <span className="text-white/30 text-sm select-none">Live demo unavailable</span>
+              <span className="text-white/30 text-sm select-none">
+                Live demo unavailable
+              </span>
             )}
 
             {project.github && (
               <TooltipProvider delayDuration={100}>
                 <Tooltip>
                   <TooltipTrigger className="w-[44px] h-[44px] rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex justify-center items-center transition-colors">
-                    <Link href={project.github} target="_blank" className="flex" aria-label="Open GitHub repository">
+                    <Link
+                      href={project.github}
+                      target="_blank"
+                      className="flex"
+                      aria-label="Open GitHub repository"
+                    >
                       <BsGithub className="text-white text-[22px]" />
                     </Link>
                   </TooltipTrigger>
