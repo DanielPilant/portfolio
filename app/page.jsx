@@ -38,8 +38,8 @@ const Home = () => {
                 className="uppercase flex items-center gap-2"
               >
                 <a
-                  href="/assets/resume/Daniel_Pilant_resume.pdf"
-                  download="Daniel_Pilant_resume.pdf"
+                  href="/assets/resume/Resume.pdf"
+                  download="Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
