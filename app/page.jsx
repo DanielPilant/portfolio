@@ -19,16 +19,23 @@ const Home = () => {
               <span className="text-accent">Daniel Pilant</span>
             </h1>
             <p className="max-w-[500px] mb-9 text-white">
-              I am a third-year software engineering student at the Lev Academic
-              Center. In addition to my academic studies, I develop my talents
-              in doing practical programming projects, taking practical and
-              up-to-date courses in development and programming, such as the
-              Flutter application development course at Udemy and the Fullstack
-              course at the Lev Academic Center. In addition, as a contribution
-              to the community, I specialize in tutoring, mentoring and teaching
-              with two years of experience in tutoring in schools, and
-              experience in management and leadership through the DEVLEV
-              community, which I co-founded, and which I currently manage.
+              Third-year Software Engineering student specializing in modern
+              Full-Stack development, scalable software architecture, and AI
+              integration. Passionate about engineering robust systems from the
+              ground up — building containerized, production-ready solutions
+              using Microservices, Micro-Frontends, SOLID, and SoC principles.
+              <br />
+              <br />
+              Recently engineered an AI-powered browser automation platform
+              (FastAPI, React, Docker, WebSockets, Playwright MCP) and a smart
+              supermarket optimization system utilizing LangGraph, Llama 3.1,
+              and hybrid vector search.
+              <br />
+              <br />
+              Co-founder of the DevLev Community and Program Coordinator at
+              Perach. Seeking a student or entry-level Software Engineering
+              position to contribute to high-impact, technologically advanced
+              projects.
             </p>
             {/* button and social links */}
             <div className="flex flex-col xl:flex-row items-center mb-8 gap-6">
@@ -38,8 +45,8 @@ const Home = () => {
                 className="uppercase flex items-center gap-2"
               >
                 <a
-                  href="/assets/resume/Resume.pdf"
-                  download="Resume.pdf"
+                  href="/assets/resume/Copy of Daniel Pilant resume.docx (1).pdf"
+                  download="Daniel Pilant Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
