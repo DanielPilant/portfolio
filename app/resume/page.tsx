@@ -6,26 +6,36 @@ import {
   FaJava,
   FaDatabase,
   FaGithub,
-  FaCode,
   FaChalkboardTeacher,
   FaLaptopCode,
   FaUsers,
+  FaPython,
+  FaReact,
+  FaBrain,
+  FaRobot,
+  FaSitemap,
 } from "react-icons/fa";
 
 import {
   SiTailwindcss,
   SiNextdotjs,
   SiTypescript,
-  SiFramer,
   SiFlutter,
   SiDotnet,
   SiSqlite,
+  SiSharp,
+  SiCplusplus,
+  SiFastapi,
+  SiPostgresql,
+  SiNotion,
+  SiLangchain,
 } from "react-icons/si";
 
 // about info
 const about = {
   title: "About me",
-  description: "",
+  description:
+    "Motivated 3rd-year Software Engineering student (GPA: 85) with a strong foundation in modern software architecture and AI integration. Highly independent learner with a proven ability to quickly adapt to new technologies. Seeking a student or entry-level software engineering position.",
   info: [
     {
       fieldName: "Name",
@@ -33,20 +43,28 @@ const about = {
     },
     {
       fieldName: "Phone",
-      fieldValue: "(+972) 584216328",
+      fieldValue: "058-4216328",
     },
     {
       fieldName: "Email",
       fieldValue: "doubledan148@gmail.com",
     },
     {
+      fieldName: "LinkedIn",
+      fieldValue: "linkedin.com/in/daniel-pilant-5a8a052b5",
+    },
+    {
+      fieldName: "GitHub",
+      fieldValue: "github.com/DanielPilant",
+    },
+    {
       fieldName: "Education",
       fieldValue:
-        "Currently studying BSc in Software Engineering at JCT - Jerusalem College of Technology",
+        "B.Sc. in Software Engineering (Third Year) – JCT College of Technology (2022 – Present)",
     },
     {
       fieldName: "Languages",
-      fieldValue: "English (Fluent), Hebrew (Native)",
+      fieldValue: "Hebrew (Native), English (Full Professional Proficiency)",
     },
   ],
 };
@@ -81,11 +99,11 @@ const activities = {
       Image4: "/assets/images/DEVLEVMEETUP1.jpg",
     },
     {
-      institution: "Perach Tutoring Program",
-      title: "Teacher & Tutor",
+      institution: "Perach Scholar Program",
+      title: "Project Program Coordinator & Teacher",
       Description:
-        "As part of the national Perach program, I served as a mentor and teacher for school students, providing academic support and personal guidance. Through one-on-one and group sessions, I helped students strengthen their skills, build confidence, and succeed in their studies while serving as a positive role model.",
-      duration: "2023 - 2025",
+        "Served as Project Program Coordinator for Perach, overseeing educational mentorship programs across multiple institutions including The Israel Museum, Infinity Project, and Code Plus. Also taught programming (Scratch, Arduino) and basic electrical engineering to 5th–6th grade students, developing interactive lessons to introduce young learners to fundamental concepts.",
+      duration: "2023 - Present",
       Image1: "/assets/images/SCHOOLCER.jpg",
       Image2: "/assets/images/SCHOOLCHACKATHON.jpg",
       Image3: "/assets/images/SCHOOLPROJECT1.jpg",
@@ -99,17 +117,12 @@ const education = {
   icon: "/assets/resume/cap.svg",
   title: "My education",
   description:
-    "Pursuing a BSc in Software Engineering at JCT, building strong foundations in software engineering while expanding skills with modern technologies like Flutter and Dart.",
+    "Pursuing a B.Sc. in Software Engineering at JCT (GPA: 85), building strong foundations in modern software architecture, AI integration, and full-stack development.",
   items: [
     {
       institution: "Jerusalem College of Technology (JCT)",
-      title: "BSc in Software Engineering",
-      duration: "2023 - Present",
-    },
-    {
-      institution: "Udemy",
-      title: "Flutter & Dart - The Complete Guide [2025 Edition]",
-      duration: "2025 - present",
+      title: "B.Sc. in Software Engineering",
+      duration: "2022 - Present",
     },
   ],
 };
@@ -117,54 +130,47 @@ const education = {
 // skills info
 const skills = {
   title: "My skills",
-  description: "",
+  description:
+    "From full-stack web and mobile development to AI agent engineering, here are the technologies and tools I work with.",
   items: [
-    // 🌐 Web & Frontend
-    //{ icon: <FaHtml5 className="w-8 h-8" />, name: "HTML5" },
-    //{ icon: <FaCss3Alt className="w-8 h-8" />, name: "CSS3" },
-    //{ icon: <FaJs className="w-8 h-8" />, name: "JavaScript" },
-    //{ icon: <SiTypescript className="w-8 h-8" />, name: "TypeScript" },
-    //{ icon: <FaReact className="w-8 h-8" />, name: "React" },
-    //{ icon: <SiNextdotjs className="w-8 h-8" />, name: "Next.js" },
-    //{ icon: <SiTailwindcss className="w-8 h-8" />, name: "Tailwind CSS" },
-    //{ icon: <SiFramer className="w-8 h-8" />, name: "Framer Motion" },
-
-    // 📱 Mobile
-    { icon: <SiFlutter className="w-8 h-8" />, name: "Flutter (Dart)" },
-
-    // ⚙️ Backend & Desktop
-    { icon: <SiDotnet className="w-8 h-8" />, name: ".NET 8 / WPF" },
-    //{ icon: <FaNodeJs className="w-8 h-8" />, name: "Node.js" },
-
     // 🖥️ Programming Languages
+    { icon: <FaPython className="w-8 h-8" />, name: "Python" },
+    { icon: <SiTypescript className="w-8 h-8" />, name: "TypeScript / JS" },
+    { icon: <SiSharp className="w-8 h-8" />, name: "C#" },
+    { icon: <SiCplusplus className="w-8 h-8" />, name: "C++" },
     { icon: <FaJava className="w-8 h-8" />, name: "Java" },
-    //{ icon: <FaPython className="w-8 h-8" />, name: "Python (basic)" },
+    { icon: <FaDatabase className="w-8 h-8" />, name: "SQL" },
+
+    // 🤖 AI & Advanced Tech
+    { icon: <FaBrain className="w-8 h-8" />, name: "RAG / LangChain" },
+    { icon: <SiLangchain className="w-8 h-8" />, name: "LangGraph" },
+    { icon: <FaRobot className="w-8 h-8" />, name: "AI Agents / MCP" },
+
+    // 🌐 Web & UI Frameworks
+    { icon: <FaReact className="w-8 h-8" />, name: "React / Next.js" },
+    { icon: <SiTailwindcss className="w-8 h-8" />, name: "Tailwind CSS" },
+    { icon: <SiFastapi className="w-8 h-8" />, name: "FastAPI" },
+
+    // 📱 Mobile & Desktop
+    { icon: <SiFlutter className="w-8 h-8" />, name: "Flutter (Dart)" },
+    { icon: <SiDotnet className="w-8 h-8" />, name: ".NET / WPF" },
 
     // 🗄️ Databases
-    { icon: <FaDatabase className="w-8 h-8" />, name: "SQL" },
-    { icon: <SiSqlite className="w-8 h-8" />, name: "SQLite (sqflite)" },
+    { icon: <SiPostgresql className="w-8 h-8" />, name: "PostgreSQL" },
+    { icon: <SiSqlite className="w-8 h-8" />, name: "SQLite" },
 
-    // 🔧 Tools
+    // 🔧 Architecture
+    { icon: <FaSitemap className="w-8 h-8" />, name: "Microservices / MFE" },
+    { icon: <FaLaptopCode className="w-8 h-8" />, name: "SOLID / SoC" },
+
+    // 🛠️ Tools
     { icon: <FaGithub className="w-8 h-8" />, name: "Git & GitHub" },
-    {
-      icon: <FaCode className="w-8 h-8" />,
-      name: "Visual Studio / VS Code",
-    },
+    { icon: <SiNotion className="w-8 h-8" />, name: "Notion" },
     { icon: <FaFigma className="w-8 h-8" />, name: "Figma" },
 
     // 🌟 Soft Skills
-    {
-      icon: <FaUsers className="w-8 h-8" />,
-      name: "Community Leadership (DevLev)",
-    },
-    {
-      icon: <FaChalkboardTeacher className="w-8 h-8" />,
-      name: "Teaching (Perach Program)",
-    },
-    {
-      icon: <FaLaptopCode className="w-8 h-8" />,
-      name: "Clean Architecture & OOP",
-    },
+    { icon: <FaUsers className="w-8 h-8" />, name: "Leadership" },
+    { icon: <FaChalkboardTeacher className="w-8 h-8" />, name: "Mentorship" },
   ],
 };
 
