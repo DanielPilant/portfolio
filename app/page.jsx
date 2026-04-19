@@ -1,48 +1,93 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { FiDownload } from "react-icons/fi";
-
-// components
 import Socials from "@/components/Socials";
 import Photo from "@/components/Photo";
-import { Link } from "lucide-react";
+
+// ─── Animation variants ────────────────────────────────────────────────────────
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.15 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.25, 0.4, 0.25, 1] },
+  },
+};
+
+// ─── Page ──────────────────────────────────────────────────────────────────────
 
 const Home = () => {
   return (
-    <section className="h-full">
-      <div className="container mx-auto h-full">
-        <div className="flex flex-col xl:flex-row items-center justify-between">
-          {/* text */}
-          <div className="text-center xl:text-left order-2 xl:order-none ">
-            <span>Software Developer</span>
-            <h1 className="mb-6 mt-4">
-              Hello, I&apos;m <br />{" "}
-              <span className="text-accent">Daniel Pilant</span>
-            </h1>
-            <p className="max-w-[500px] mb-9 text-white">
-              Third-year Software Engineering student specializing in modern
-              Full-Stack development, scalable software architecture, and AI
-              integration. Passionate about engineering robust systems from the
-              ground up — building containerized, production-ready solutions
-              using Microservices, Micro-Frontends, SOLID, and SoC principles.
-              <br />
-              <br />
-              Recently engineered an AI-powered browser automation platform
-              (FastAPI, React, Docker, WebSockets, Playwright MCP) and a smart
-              supermarket optimization system utilizing LangGraph, Llama 3.1,
-              and hybrid vector search.
-              <br />
-              <br />
-              Co-founder of the DevLev Community and Program Coordinator at
-              Perach. Seeking a student or entry-level Software Engineering
-              position to contribute to high-impact, technologically advanced
-              projects.
-            </p>
-            {/* button and social links */}
-            <div className="flex flex-col xl:flex-row items-center mb-8 gap-6">
+    <section className="min-h-[calc(100vh-4rem)] xl:min-h-[calc(100vh-5rem)] flex items-center py-12 xl:py-0">
+      <div className="container mx-auto">
+        <div className="flex flex-col xl:flex-row items-center justify-between gap-10 xl:gap-16">
+
+          {/* ── Text column ──────────────────────────────────────────────── */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col items-center xl:items-start text-center xl:text-left order-2 xl:order-none xl:max-w-[55%]"
+          >
+            {/* Role badge */}
+            <motion.div variants={itemVariants}>
+              <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-accent/80 border border-accent/20 rounded-full px-4 py-1.5 bg-accent/[0.06] font-semibold mb-6">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                Software Developer
+              </span>
+            </motion.div>
+
+            {/* Headline */}
+            <motion.h1 variants={itemVariants} className="mb-5">
+              Hello, I&apos;m <br />
+              <span
+                style={{
+                  background:
+                    "linear-gradient(135deg, #00c3ff 0%, #9359ff 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                Daniel Pilant
+              </span>
+            </motion.h1>
+
+            {/* Bio — punchy, scannable */}
+            <motion.p
+              variants={itemVariants}
+              className="max-w-[480px] mb-8 text-white/60 leading-relaxed"
+            >
+              Third-year Software Engineering student building production-ready
+              systems at scale — AI-powered browser automation, microservice
+              architectures, and real-time full-stack apps. Co-founder of{" "}
+              <span className="text-white/85 font-medium">
+                DevLev Community
+              </span>
+              . Seeking a student or entry-level software engineering role to
+              ship meaningful work.
+            </motion.p>
+
+            {/* CTA row */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row items-center gap-4 w-full xl:w-auto"
+            >
               <Button
                 asChild
                 size="lg"
-                className="uppercase flex items-center gap-2"
+                className="uppercase tracking-widest text-xs font-semibold rounded-xl px-6 h-12 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 w-full sm:w-auto"
               >
                 <a
                   href="/assets/resume/Copy of Daniel Pilant resume.docx (1).pdf"
@@ -51,107 +96,34 @@ const Home = () => {
                   rel="noopener noreferrer"
                 >
                   <span>Download resume</span>
-                  <FiDownload className="text-xl" />
+                  <FiDownload className="text-base" />
                 </a>
               </Button>
-              <div className="mb-8 xl:mb-0">
-                <Socials
-                  containerStyles="flex gap-6"
-                  iconStyles="w-9 h-9 border
-              border-accent rounded-full flex justify-center items-center
-              text-accent text-base hover:bg-accent hover:text-primary hover:transition-all duration-500"
-                />
-              </div>
-            </div>
 
-            {/* snake github animation */}
-            {/* <div className="">
-              github snake game
-            </div> */}
-          </div>
+              {/* Vertical rule separating button from socials */}
+              <div className="hidden sm:block w-px h-8 bg-white/[0.12]" />
 
-          {/* photo */}
-          <div className="order-1 xl:order-none mb-8 xl:mb-8">
+              <Socials
+                containerStyles="flex gap-3"
+                iconStyles="w-10 h-10 border border-white/[0.1] rounded-xl flex justify-center items-center text-white/55 text-lg hover:text-accent hover:border-accent/40 hover:bg-accent/[0.07] hover:scale-110 active:scale-95 transition-all duration-200"
+              />
+            </motion.div>
+          </motion.div>
+
+          {/* ── Photo column ─────────────────────────────────────────────── */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
+            className="order-1 xl:order-none mb-4 xl:mb-0"
+          >
             <Photo />
-          </div>
-        </div>
-        {/* <div className="border-b border-white/10 mb-8 flex flex-col items-center">
-          <h2 className="mb-6 mt-4">more about me...</h2>
+          </motion.div>
 
-          <div
-            className="max-w-3xl mx-auto py-8 margin-top-8 border-2 border-accent
-          rounded-lg p-4"
-          >
-            <h3>Programming</h3>
-            <br />
-            <p>
-              I've always been fascinated by how logic can create entire worlds.
-              Programming, to me, is both art and architecture — the ability to
-              build systems that think, move, and evolve. I enjoy the process of
-              solving complex problems and turning abstract ideas into something
-              real and functional, where every line of code feels like a step
-              toward mastery.
-            </p>
-          </div>
-          <br />
-          <div
-            className="max-w-3xl mx-auto py-8 margin-top-8 border-2 border-accent
-          rounded-lg p-4"
-          >
-            <h3>Music</h3>
-            <br />
-            <p>
-              Music is my purest language. I compose in Cubase, play keyboard,
-              and shape soundscapes that mix logic, emotion, and a touch of
-              chaos.
-              <br />
-              <span className="bg-accent text-black px-2 py-1 rounded-md mt-2 inline-block">
-                <a
-                  href="https://www.youtube.com/@DoubleDan"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Link to my music YouTube Channel
-                </a>
-              </span>
-            </p>
-          </div>
-          <br />
-          <div
-            className="max-w-3xl mx-auto py-8 margin-top-8 border-2 border-accent
-          rounded-lg p-4"
-          >
-            <h3>Science & Mathematics</h3>
-            <br />
-            <p>
-              I’m captivated by the hidden order of the universe — the language
-              of mathematics, the elegance of physics, and the vast mysteries of
-              astronomy. I love uncovering the principles that govern everything
-              from subatomic particles to galaxies. For me, science isn’t just
-              knowledge; it’s a way of seeing truth — precise, infinite, and
-              beautiful.
-            </p>
-          </div>
-          <br />
-          <div
-            className="max-w-3xl mx-auto py-8 margin-top-8 border-2 border-accent
-          rounded-lg p-4"
-          >
-            <h3>Mythology & Storytelling</h3>
-            <br />
-            <p>
-              I’m fascinated by worlds where myth, philosophy, and imagination
-              intertwine. Stories like 'The Elder Scrolls', 'The Stormlight
-              Archive', and the 'Avengers' universe inspire me — not just for
-              their epic scale, but for the ideas they explore about destiny,
-              power, and the human spirit. Writing, for me, is a way to build
-              universes that question reality itself and mirror the struggle
-              between light and darkness within us.
-            </p>
-          </div> 
-        </div>*/}
+        </div>
       </div>
     </section>
   );
 };
+
 export default Home;

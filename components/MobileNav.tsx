@@ -1,64 +1,79 @@
 "use client";
 
+import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { CiMenuFries } from "react-icons/ci";
 
 const links = [
-  {
-    name: "home",
-    path: "/",
-  },
-  // {
-  //     name: "services",
-  //     path: "/services",
-  // },
-  {
-    name: "resume",
-    path: "/resume",
-  },
-  {
-    name: "Projects",
-    path: "/work",
-  },
+  { name: "Home",     path: "/" },
+  { name: "Resume",   path: "/resume" },
+  { name: "Projects", path: "/work" },
 ];
 
 const MobileNav = () => {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
 
   return (
-    <Sheet>
-      <SheetTrigger className="flex justify-center items-center">
-        <CiMenuFries className="text-[32px] text-accent" />
+    <Sheet open={open} onOpenChange={setOpen}>
+      {/* Hamburger trigger */}
+      <SheetTrigger className="flex items-center justify-center w-9 h-9 rounded-lg hover:bg-white/[0.06] transition-colors duration-200">
+        <CiMenuFries className="text-[22px] text-accent" />
       </SheetTrigger>
-      <SheetContent className="flex flex-col p-6 gap-6">
-        {/* name */}
-        <div className="mt-32 mb-40 text-center text-2xl">
-          <Link href="/">
-            <h1 className="font-semibold">
-              DanielPilant<span className="text-accent">.</span>
-            </h1>
+
+      {/* Drawer */}
+      <SheetContent
+        side="right"
+        className="flex flex-col w-72 bg-card border-l border-white/[0.06] p-0 gap-0"
+      >
+        {/* Logo */}
+        <div className="flex items-center px-7 h-16 border-b border-white/[0.06] shrink-0">
+          <Link
+            href="/"
+            onClick={() => setOpen(false)}
+            className="text-xl font-bold tracking-tight text-white hover:text-accent transition-colors duration-200"
+          >
+            Daniel<span className="text-accent">.</span>
           </Link>
         </div>
-        {/* nav links */}
-        <nav className="flex flex-col justify-center items-center gap-8">
-          {links.map((link, index) => {
+
+        {/* Nav links */}
+        <nav className="flex flex-col px-4 py-6 gap-1">
+          {links.map((link) => {
+            const isActive = link.path === pathname;
             return (
               <Link
-                key={index}
+                key={link.path}
                 href={link.path}
-                className={`${
-                  link.path === pathname &&
-                  "text-accent border-b-2 border-accent"
-                }
-                 text-xl capitalize hover:text-accent transition-all`}
+                onClick={() => setOpen(false)}
+                className={[
+                  "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200",
+                  isActive
+                    ? "text-accent bg-accent/[0.08] border border-accent/[0.15]"
+                    : "text-white/50 hover:text-white hover:bg-white/[0.05]",
+                ].join(" ")}
               >
+                {/* Active dot */}
+                <span
+                  className={[
+                    "w-1.5 h-1.5 rounded-full shrink-0 transition-colors duration-200",
+                    isActive ? "bg-accent" : "bg-white/20",
+                  ].join(" ")}
+                />
                 {link.name}
               </Link>
             );
           })}
         </nav>
+
+        {/* Footer */}
+        <div className="mt-auto px-7 py-6 border-t border-white/[0.06]">
+          <p className="text-white/25 text-xs tracking-wide">
+            Daniel Pilant &mdash; Portfolio
+          </p>
+        </div>
       </SheetContent>
     </Sheet>
   );

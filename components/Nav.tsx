@@ -2,42 +2,49 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import path from "path";
+import { motion } from "framer-motion";
 
 const links = [
-  {
-    name: "home",
-    path: "/",
-  },
-  // {
-  //     name: "services",
-  //     path: "/services",
-  // },
-  {
-    name: "resume",
-    path: "/resume",
-  },
-  {
-    name: "Projects",
-    path: "/work",
-  },
+  { name: "Home",     path: "/" },
+  { name: "Resume",   path: "/resume" },
+  { name: "Projects", path: "/work" },
 ];
 
 const Nav = () => {
   const pathname = usePathname();
-  console.log(pathname);
+
   return (
-    <nav className="flex gap-8">
-      {links.map((link, index) => {
+    <nav className="flex items-center gap-1">
+      {links.map((link) => {
+        const isActive = link.path === pathname;
         return (
           <Link
-            key={index}
+            key={link.path}
             href={link.path}
-            className={` ${
-              link.path === pathname && "text-accent border-b-2 border-accent"
-            } capitalize font-medium hover:text-accent transition-all`}
+            className={[
+              "relative px-4 py-2 text-sm font-medium rounded-lg transition-colors duration-200",
+              isActive
+                ? "text-white"
+                : "text-white/50 hover:text-white/90",
+            ].join(" ")}
           >
-            {link.name}
+            {/* Sliding pill indicator — shared layoutId animates between links */}
+            {isActive && (
+              <motion.span
+                layoutId="nav-pill"
+                className="absolute inset-0 rounded-lg bg-white/[0.07] border border-white/[0.09]"
+                transition={{ type: "spring", stiffness: 380, damping: 32 }}
+              />
+            )}
+            {/* Accent dot on active link */}
+            {isActive && (
+              <motion.span
+                layoutId="nav-dot"
+                className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent"
+                transition={{ type: "spring", stiffness: 380, damping: 32 }}
+              />
+            )}
+            <span className="relative z-10">{link.name}</span>
           </Link>
         );
       })}

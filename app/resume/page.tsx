@@ -1,120 +1,81 @@
 "use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 import {
-  FaFigma,
-  FaJava,
-  FaDatabase,
-  FaGithub,
-  FaChalkboardTeacher,
-  FaLaptopCode,
-  FaUsers,
-  FaPython,
-  FaReact,
-  FaBrain,
-  FaRobot,
-  FaSitemap,
+  FaFigma, FaJava, FaDatabase, FaGithub,
+  FaChalkboardTeacher, FaLaptopCode, FaUsers,
+  FaPython, FaReact, FaBrain, FaRobot, FaSitemap,
 } from "react-icons/fa";
-
 import {
-  SiTailwindcss,
-  SiNextdotjs,
-  SiTypescript,
-  SiFlutter,
-  SiDotnet,
-  SiSqlite,
-  SiSharp,
-  SiCplusplus,
-  SiFastapi,
-  SiPostgresql,
-  SiNotion,
-  SiLangchain,
+  SiTailwindcss, SiTypescript, SiFlutter,
+  SiDotnet, SiSqlite, SiSharp, SiCplusplus,
+  SiFastapi, SiPostgresql, SiNotion, SiLangchain,
 } from "react-icons/si";
 
-// about info
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { ScrollArea } from "@/components/ui/scroll-area";
+
+// ─── Data ──────────────────────────────────────────────────────────────────────
+
 const about = {
   title: "About me",
   description:
-    "Motivated 3rd-year Software Engineering student (GPA: 85) with a strong foundation in modern software architecture and AI integration. Highly independent learner with a proven ability to quickly adapt to new technologies. Seeking a student or entry-level software engineering position.",
+    "Motivated 3rd-year Software Engineering student (GPA: 85) with a strong foundation in modern software architecture and AI integration. Highly independent learner with a proven ability to quickly adapt to new technologies.",
   info: [
-    {
-      fieldName: "Name",
-      fieldValue: "Daniel Pilant",
-    },
-    {
-      fieldName: "Phone",
-      fieldValue: "058-4216328",
-    },
-    {
-      fieldName: "Email",
-      fieldValue: "doubledan148@gmail.com",
-    },
-    {
-      fieldName: "LinkedIn",
-      fieldValue: "linkedin.com/in/daniel-pilant-5a8a052b5",
-    },
-    {
-      fieldName: "GitHub",
-      fieldValue: "github.com/DanielPilant",
-    },
-    {
-      fieldName: "Education",
-      fieldValue:
-        "B.Sc. in Software Engineering (Third Year) – JCT College of Technology (2022 – Present)",
-    },
-    {
-      fieldName: "Languages",
-      fieldValue: "Hebrew (Native), English (Full Professional Proficiency)",
-    },
+    { fieldName: "Name",       fieldValue: "Daniel Pilant" },
+    { fieldName: "Phone",      fieldValue: "058-4216328",              href: "tel:0584216328" },
+    { fieldName: "Email",      fieldValue: "doubledan148@gmail.com",   href: "mailto:doubledan148@gmail.com" },
+    { fieldName: "LinkedIn",   fieldValue: "linkedin.com/in/danielpilant", href: "https://www.linkedin.com/in/danielpilant?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" },
+    { fieldName: "GitHub",     fieldValue: "github.com/DanielPilant",  href: "https://github.com/DanielPilant" },
+    { fieldName: "Education",  fieldValue: "B.Sc. Software Engineering – JCT (2022 – Present)" },
+    { fieldName: "Languages",  fieldValue: "Hebrew (Native) · English (Full Professional)" },
   ],
 };
 
-// Activities info
 const activities = {
-  icon: "/assets/resume/badge.svg",
   title: "Community & Leadership",
   description:
-    "Beyond academics, I dedicate time to community leadership and mentorship. From co-founding DevLev, a student-led developer community at JCT, to teaching and guiding students through the national Perach program, these experiences reflect my passion for empowering others, sharing knowledge, and bridging academia with real-world opportunities.",
+    "Beyond academics, I dedicate time to community leadership and mentorship — co-founding DevLev, a student-led developer community at JCT, and teaching through the national Perach program.",
   items: [
     {
-      institution: "Winner - hackathon 2024 at JCT",
-      title: "3rd Place - Hackathon 2024",
-      Description:
-        "ResqDoc is an AI-assisted documentation platform built for United Hatzalah’s emergency teams. It enables first responders to automatically generate and manage medical reports in real time during rescue operations. The system focuses on speed, accuracy, and structured data collection under pressure, allowing paramedics to record vital information with minimal interaction.",
-      duration: "2024",
-      Image1: "/assets/images/Hackathon_1.jpg",
-      Image2: "/assets/images/Hackathon_2.jpg",
-      Image3: "/assets/images/Hackathon_3.jpg",
-      Image4: "/assets/images/Hackathon_4.jpg",
+      institution: "Perach Scholar Program",
+      title: "Project Program Coordinator",
+      description:
+        "Overseeing educational mentorship programs across multiple institutions including The Israel Museum, Infinity Project, and Code Plus — coordinating volunteers, planning curricula, and bridging students with real-world learning opportunities.",
+      duration: "2025 – Present",
+      images: [],
     },
     {
-      institution: "DevLev - JCT's Developer Student Club",
+      institution: "DevLev – JCT Developer Student Club",
       title: "Co-Founder & Manager",
-      Description:
-        "DevLev is a student-led tech community I co-founded at the Jerusalem College of Technology. We bridge academia and industry through hands-on workshops, hack nights, and networking, giving students practical skills, real projects, and professional connections to grow as future software engineers.",
-      duration: "2025 - Present",
-      Image1: "/assets/images/DEVLEV.jpg",
-      Image2: "/assets/images/DEVLEVMATAN.jpg",
-      Image3: "/assets/images/DEVLEVMEETUP1_2.jpg",
-      Image4: "/assets/images/DEVLEVMEETUP1.jpg",
+      description:
+        "DevLev is a student-led tech community I co-founded at JCT. We bridge academia and industry through hands-on workshops, hack nights, and networking events.",
+      duration: "2025 – 2026",
+      images: ["/assets/images/DEVLEV.jpg", "/assets/images/DEVLEVMATAN.jpg", "/assets/images/DEVLEVMEETUP1_2.jpg", "/assets/images/DEVLEVMEETUP1.jpg"],
+    },
+    {
+      institution: "JCT – Hackathon 2024",
+      title: "3rd Place – Hackathon 2024",
+      description:
+        "ResqDoc: an AI-assisted documentation platform for United Hatzalah's emergency teams. Enables first responders to generate and manage medical reports in real time during rescue operations.",
+      duration: "2024",
+      images: ["/assets/images/Hackathon_1.jpg", "/assets/images/Hackathon_2.jpg", "/assets/images/Hackathon_3.jpg", "/assets/images/Hackathon_4.jpg"],
     },
     {
       institution: "Perach Scholar Program",
-      title: "Project Program Coordinator & Teacher",
-      Description:
-        "Served as Project Program Coordinator for Perach, overseeing educational mentorship programs across multiple institutions including The Israel Museum, Infinity Project, and Code Plus. Also taught programming (Scratch, Arduino) and basic electrical engineering to 5th–6th grade students, developing interactive lessons to introduce young learners to fundamental concepts.",
-      duration: "2023 - Present",
-      Image1: "/assets/images/SCHOOLCER.jpg",
-      Image2: "/assets/images/SCHOOLCHACKATHON.jpg",
-      Image3: "/assets/images/SCHOOLPROJECT1.jpg",
-      Image4: "/assets/images/teacher.jpg",
+      title: "Programming Teacher",
+      description:
+        "Taught programming (Scratch, Arduino) and basic electrical engineering to 5th–6th grade students, developing interactive lessons to introduce young learners to fundamental concepts in technology and computing.",
+      duration: "2023 – 2025",
+      images: ["/assets/images/SCHOOLCER.jpg", "/assets/images/SCHOOLCHACKATHON.jpg", "/assets/images/SCHOOLPROJECT1.jpg", "/assets/images/teacher.jpg"],
     },
   ],
 };
 
-// education info
 const education = {
-  icon: "/assets/resume/cap.svg",
   title: "My education",
   description:
     "Pursuing a B.Sc. in Software Engineering at JCT (GPA: 85), building strong foundations in modern software architecture, AI integration, and full-stack development.",
@@ -122,258 +83,274 @@ const education = {
     {
       institution: "Jerusalem College of Technology (JCT)",
       title: "B.Sc. in Software Engineering",
-      duration: "2022 - Present",
+      duration: "2022 – Present",
     },
   ],
 };
 
-// skills info
 const skills = {
   title: "My skills",
   description:
     "From full-stack web and mobile development to AI agent engineering, here are the technologies and tools I work with.",
   items: [
-    // 🖥️ Programming Languages
-    { icon: <FaPython className="w-8 h-8" />, name: "Python" },
-    { icon: <SiTypescript className="w-8 h-8" />, name: "TypeScript / JS" },
-    { icon: <SiSharp className="w-8 h-8" />, name: "C#" },
-    { icon: <SiCplusplus className="w-8 h-8" />, name: "C++" },
-    { icon: <FaJava className="w-8 h-8" />, name: "Java" },
-    { icon: <FaDatabase className="w-8 h-8" />, name: "SQL" },
-
-    // 🤖 AI & Advanced Tech
-    { icon: <FaBrain className="w-8 h-8" />, name: "RAG / LangChain" },
-    { icon: <SiLangchain className="w-8 h-8" />, name: "LangGraph" },
-    { icon: <FaRobot className="w-8 h-8" />, name: "AI Agents / MCP" },
-
-    // 🌐 Web & UI Frameworks
-    { icon: <FaReact className="w-8 h-8" />, name: "React / Next.js" },
-    { icon: <SiTailwindcss className="w-8 h-8" />, name: "Tailwind CSS" },
-    { icon: <SiFastapi className="w-8 h-8" />, name: "FastAPI" },
-
-    // 📱 Mobile & Desktop
-    { icon: <SiFlutter className="w-8 h-8" />, name: "Flutter (Dart)" },
-    { icon: <SiDotnet className="w-8 h-8" />, name: ".NET / WPF" },
-
-    // 🗄️ Databases
-    { icon: <SiPostgresql className="w-8 h-8" />, name: "PostgreSQL" },
-    { icon: <SiSqlite className="w-8 h-8" />, name: "SQLite" },
-
-    // 🔧 Architecture
-    { icon: <FaSitemap className="w-8 h-8" />, name: "Microservices / MFE" },
-    { icon: <FaLaptopCode className="w-8 h-8" />, name: "SOLID / SoC" },
-
-    // 🛠️ Tools
-    { icon: <FaGithub className="w-8 h-8" />, name: "Git & GitHub" },
-    { icon: <SiNotion className="w-8 h-8" />, name: "Notion" },
-    { icon: <FaFigma className="w-8 h-8" />, name: "Figma" },
-
-    // 🌟 Soft Skills
-    { icon: <FaUsers className="w-8 h-8" />, name: "Leadership" },
-    { icon: <FaChalkboardTeacher className="w-8 h-8" />, name: "Mentorship" },
+    // Languages
+    { icon: <FaPython className="w-7 h-7" />,       name: "Python" },
+    { icon: <SiTypescript className="w-7 h-7" />,   name: "TypeScript / JS" },
+    { icon: <SiSharp className="w-7 h-7" />,        name: "C#" },
+    { icon: <SiCplusplus className="w-7 h-7" />,    name: "C++" },
+    { icon: <FaJava className="w-7 h-7" />,         name: "Java" },
+    { icon: <FaDatabase className="w-7 h-7" />,     name: "SQL" },
+    // AI
+    { icon: <FaBrain className="w-7 h-7" />,        name: "RAG / LangChain" },
+    { icon: <SiLangchain className="w-7 h-7" />,    name: "LangGraph" },
+    { icon: <FaRobot className="w-7 h-7" />,        name: "AI Agents / MCP" },
+    // Web
+    { icon: <FaReact className="w-7 h-7" />,        name: "React / Next.js" },
+    { icon: <SiTailwindcss className="w-7 h-7" />,  name: "Tailwind CSS" },
+    { icon: <SiFastapi className="w-7 h-7" />,      name: "FastAPI" },
+    // Mobile & Desktop
+    { icon: <SiFlutter className="w-7 h-7" />,      name: "Flutter (Dart)" },
+    { icon: <SiDotnet className="w-7 h-7" />,       name: ".NET / WPF" },
+    // Databases
+    { icon: <SiPostgresql className="w-7 h-7" />,   name: "PostgreSQL" },
+    { icon: <SiSqlite className="w-7 h-7" />,       name: "SQLite" },
+    // Architecture
+    { icon: <FaSitemap className="w-7 h-7" />,      name: "Microservices / MFE" },
+    { icon: <FaLaptopCode className="w-7 h-7" />,   name: "SOLID / SoC" },
+    // Tools
+    { icon: <FaGithub className="w-7 h-7" />,       name: "Git & GitHub" },
+    { icon: <SiNotion className="w-7 h-7" />,       name: "Notion" },
+    { icon: <FaFigma className="w-7 h-7" />,        name: "Figma" },
+    // Soft skills
+    { icon: <FaUsers className="w-7 h-7" />,            name: "Leadership" },
+    { icon: <FaChalkboardTeacher className="w-7 h-7" />, name: "Mentorship" },
   ],
 };
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// ─── Animation variants ────────────────────────────────────────────────────────
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+const fadeUp = {
+  hidden: { opacity: 0, y: 14 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.45, delay: i * 0.07, ease: "easeOut" as const },
+  }),
+};
 
-import { ScrollArea } from "@/components/ui/scroll-area";
+const skillsContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.04, delayChildren: 0.05 } },
+};
 
-import { motion } from "framer-motion";
-import { Description } from "@radix-ui/react-dialog";
+const skillItem = {
+  hidden: { opacity: 0, scale: 0.88 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.3, ease: "easeOut" as const } },
+};
+
+// ─── Shared section header ─────────────────────────────────────────────────────
+
+function SectionHeader({ title, description }: { title: string; description: string }) {
+  return (
+    <div className="flex flex-col gap-2 mb-8">
+      <h3 className="text-3xl xl:text-4xl font-bold text-white">{title}</h3>
+      <p className="text-white/50 text-sm leading-relaxed max-w-[540px] mx-auto xl:mx-0">
+        {description}
+      </p>
+    </div>
+  );
+}
+
+// ─── Page ──────────────────────────────────────────────────────────────────────
 
 const Resume = () => {
   return (
-    <motion.div className="min-h-[80vh] flex items-center py-12 xl:py-0">
+    <div className="min-h-[80vh] py-12 xl:py-20">
       <div className="container mx-auto">
         <Tabs
           defaultValue="education"
-          className="flex flex-col xl:flex-row gap-[60px]"
+          className="flex flex-col xl:flex-row gap-10 xl:gap-16"
         >
-          <TabsList className="flex flex-col w-full xl:max-w-[360] mx-auto xl:mx-0 gap-6">
+          {/* ── Sidebar tab list ──────────────────────────────────── */}
+          <TabsList className="flex flex-col w-full xl:w-[200px] shrink-0 mx-auto xl:mx-0 gap-2 h-auto bg-transparent p-0">
             <TabsTrigger value="education">Education</TabsTrigger>
             <TabsTrigger value="skills">Skills</TabsTrigger>
             <TabsTrigger value="activities">Activities</TabsTrigger>
             <TabsTrigger value="about">About Me</TabsTrigger>
           </TabsList>
 
-          {/* content */}
-          <div className="min-h-[70vh] w-full">
-            {/* activities */}
-            <TabsContent value="activities" className="mtmx-full">
-              <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                <ScrollArea className="h-[670px]">
-                  <h3 className="text-4xl font-bold">{activities.title}</h3>
-                  <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                    {activities.description}
-                  </p>
-                  <ul className="flex flex-col gap-[30px]">
-                    {activities.items.map((item, index) => {
-                      const imgs = [
-                        item.Image1,
-                        item.Image2,
-                        item.Image3,
-                        item.Image4,
-                      ].filter(Boolean);
+          {/* ── Content area ──────────────────────────────────────── */}
+          <div className="flex-1 min-h-[60vh] text-center xl:text-left">
 
-                      return (
-                        <li
-                          key={index}
-                          className="group bg-[#232329] rounded-2xl p-4 xl:p-6 shadow-sm hover:shadow-md transition-shadow duration-300"
-                        >
-                          <div className="flex flex-col xl:flex-row gap-6 items-stretch">
-                            <div className="xl:basis-2/3 grid grid-cols-2 gap-3">
-                              {imgs
-                                .slice(0, 4)
-                                .map((src: string, i: number) => (
-                                  <div
-                                    key={i}
-                                    className="relative aspect-[4/3] rounded-xl overflow-hidden ring-1 ring-white/10"
-                                  >
-                                    <Image
-                                      src={src}
-                                      alt={`${item.title} image ${i + 1}`}
-                                      fill
-                                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                                      priority={index === 0 && i === 0}
-                                      className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                                    />
-                                  </div>
-                                ))}
-                            </div>
-
-                            <div className="xl:basis-1/3 bg-[#1e1e23]/50 rounded-xl p-5 flex flex-col justify-between gap-4">
-                              <div className="flex flex-col gap-2">
-                                <span className="text-accent tracking-wide font-semibold">
-                                  {item.duration}
-                                </span>
-                                <h3 className="text-2xl font-semibold text-white">
-                                  {item.title}
-                                </h3>
-
-                                <div className="flex items-center gap-3 text-white/70">
-                                  <span className="w-[6px] h-[6px] rounded-full bg-accent" />
-                                  <p>{item.institution}</p>
-                                </div>
-                              </div>
-
-                              {item.Description && (
-                                <p className="text-white/70 leading-relaxed">
-                                  {item.Description}
-                                </p>
-                              )}
-                            </div>
-                          </div>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </ScrollArea>
-              </div>
+            {/* Education ─────────────────────────────────────────── */}
+            <TabsContent value="education" className="mt-0">
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                className="flex flex-col"
+              >
+                <SectionHeader title={education.title} description={education.description} />
+                <ul className="flex flex-col gap-4">
+                  {education.items.map((item, i) => (
+                    <motion.li
+                      key={i}
+                      custom={i}
+                      variants={fadeUp}
+                      className="flex flex-col justify-center items-center xl:items-start gap-3 bg-white/[0.03] border border-white/[0.08] rounded-2xl px-8 py-7 hover:border-accent/25 hover:bg-white/[0.05] transition-all duration-300"
+                    >
+                      <span className="text-accent text-sm font-semibold tracking-wide">
+                        {item.duration}
+                      </span>
+                      <h3 className="text-xl font-semibold text-white">
+                        {item.title}
+                      </h3>
+                      <div className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                        <p className="text-white/55 text-sm">{item.institution}</p>
+                      </div>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
             </TabsContent>
 
-            {/* education */}
-            <TabsContent value="education" className="mtmx-full">
-              <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                <h3 className="text-4xl font-bold">{education.title}</h3>
-                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                  {education.description}
-                </p>
-                <ScrollArea className="h-[400px]">
-                  <ul className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
-                    {education.items.map((item, index) => {
-                      return (
-                        <li
-                          key={index}
-                          className="bg-[#232329] h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1"
-                        >
-                          <span className="text-accent">{item.duration}</span>
-                          <h3 className="text-xl max-w-[460px] min-h-[60px] text-center lg:text-left">
-                            {item.title}
-                          </h3>
-                          <div className="flex items-center gap-3">
-                            {/* dot */}
-                            <span className="w-[6px] h-[6px] rounded-full bg-accent"></span>
-                            <p className="text-white/60">{item.institution}</p>
-                          </div>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </ScrollArea>
-              </div>
-            </TabsContent>
-            {/* skills */}
-            <TabsContent value="skills" className="mtmx-full">
-              <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                <div className="flex flex-col gap-[30px] text-center xl:text-left">
-                  <h3 className="text-4xl font-bold">{skills.title}</h3>
-                  <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                    {skills.description}
-                  </p>
-                </div>
-                <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 xl:gap-[30px]">
-                  {skills.items.map((skill, index) => {
-                    return (
-                      <li key={index}>
-                        <TooltipProvider delayDuration={100}>
-                          <Tooltip>
-                            <TooltipTrigger className="w-full h-[100px] bg-[#232329] rounded-xl flex justify-center items-center group">
-                              <div className="flex flex-col items-center text-6xl group-hover:text-accent transition-all duration-300">
+            {/* Skills ─────────────────────────────────────────────── */}
+            <TabsContent value="skills" className="mt-0">
+              <div className="flex flex-col">
+                <SectionHeader title={skills.title} description={skills.description} />
+                <TooltipProvider delayDuration={150}>
+                  <motion.ul
+                    variants={skillsContainer}
+                    initial="hidden"
+                    animate="visible"
+                    className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-5 gap-3"
+                  >
+                    {skills.items.map((skill, i) => (
+                      <motion.li key={i} variants={skillItem}>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <div className="flex flex-col items-center justify-center gap-2.5 p-4 rounded-xl bg-white/[0.03] border border-white/[0.07] hover:border-accent/30 hover:bg-accent/[0.05] hover:scale-[1.04] active:scale-[0.97] transition-all duration-250 cursor-default group aspect-square">
+                              <span className="text-white/55 group-hover:text-accent transition-colors duration-250">
                                 {skill.icon}
-                                <span className="text-sm mt-4 text-white/60">
-                                  {skill.name}
-                                </span>
-                              </div>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p>{skill.name}</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </TooltipProvider>
-                      </li>
-                    );
-                  })}
-                </ul>
+                              </span>
+                              <span className="text-[10px] xl:text-xs text-white/45 group-hover:text-white/70 transition-colors text-center leading-tight font-medium">
+                                {skill.name}
+                              </span>
+                            </div>
+                          </TooltipTrigger>
+                          <TooltipContent>{skill.name}</TooltipContent>
+                        </Tooltip>
+                      </motion.li>
+                    ))}
+                  </motion.ul>
+                </TooltipProvider>
               </div>
             </TabsContent>
-            {/* about */}
-            <TabsContent
-              value="about"
-              className="mtmx-full text-center xl:text-left"
-            >
-              <div className="flex flex-col gap-[30px]">
-                <h3 className="text-4xl font-bold">{about.title}</h3>
-                <p className="max-w-[600px] text-white/60 mx-auto xl:mx-0">
-                  {about.description}
-                </p>
-                <ul className="grid grid-cols-1  gap-y-10 max-w-[600px] mx-auto xl:mx-0">
-                  {about.info.map((info, index) => {
-                    return (
-                      <li
-                        key={index}
-                        className="flex items-center justify-center xl:justify-start gap-4"
+
+            {/* Activities ─────────────────────────────────────────── */}
+            <TabsContent value="activities" className="mt-0">
+              <div className="flex flex-col">
+                <SectionHeader title={activities.title} description={activities.description} />
+                <ScrollArea className="h-[560px] xl:h-[640px] pr-2">
+                  <ul className="flex flex-col gap-5 pb-2">
+                    {activities.items.map((item, i) => (
+                      <motion.li
+                        key={i}
+                        custom={i}
+                        variants={fadeUp}
+                        initial="hidden"
+                        animate="visible"
+                        className="group bg-white/[0.03] border border-white/[0.08] rounded-2xl p-4 xl:p-6 hover:border-accent/20 hover:bg-white/[0.05] transition-all duration-300"
                       >
-                        <span className="text-white/60">
-                          {info.fieldName}:{" "}
-                        </span>
-                        <span className="text-xl">{info.fieldValue}</span>
-                      </li>
-                    );
-                  })}
-                </ul>
+                        <div className="flex flex-col xl:flex-row gap-5 items-stretch">
+                          {/* 2×2 image grid — hidden when no images available */}
+                          {item.images.length > 0 && (
+                            <div className="xl:basis-[55%] grid grid-cols-2 gap-2.5">
+                              {item.images.slice(0, 4).map((src, j) => (
+                                <div
+                                  key={j}
+                                  className="relative aspect-[4/3] rounded-xl overflow-hidden border border-white/[0.07]"
+                                >
+                                  <Image
+                                    src={src}
+                                    alt={`${item.title} ${j + 1}`}
+                                    fill
+                                    sizes="(max-width: 640px) 50vw, (max-width: 1280px) 25vw, 20vw"
+                                    priority={i === 0 && j === 0}
+                                    className="object-cover group-hover:scale-[1.03] transition-transform duration-400"
+                                  />
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          {/* Info panel — full width when there are no images */}
+                          <div className={`${item.images.length > 0 ? "xl:basis-[45%]" : "w-full"} bg-white/[0.02] border border-white/[0.06] rounded-xl p-5 flex flex-col justify-between gap-4 text-left`}>
+                            <div className="flex flex-col gap-2">
+                              <span className="text-xs font-semibold tracking-widest text-accent/80 uppercase">
+                                {item.duration}
+                              </span>
+                              <h3 className="text-lg xl:text-xl font-semibold text-white leading-snug">
+                                {item.title}
+                              </h3>
+                              <div className="flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                                <p className="text-white/50 text-xs">{item.institution}</p>
+                              </div>
+                            </div>
+                            <p className="text-white/50 text-sm leading-relaxed">
+                              {item.description}
+                            </p>
+                          </div>
+                        </div>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </ScrollArea>
               </div>
             </TabsContent>
+
+            {/* About ──────────────────────────────────────────────── */}
+            <TabsContent value="about" className="mt-0">
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                className="flex flex-col"
+              >
+                <SectionHeader title={about.title} description={about.description} />
+                <ul className="flex flex-col gap-4 max-w-[560px] mx-auto xl:mx-0">
+                  {about.info.map((item, i) => (
+                    <motion.li
+                      key={i}
+                      custom={i}
+                      variants={fadeUp}
+                      className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 py-3 border-b border-white/[0.06] last:border-0"
+                    >
+                      <span className="text-xs uppercase tracking-widest text-white/35 font-semibold sm:w-24 shrink-0">
+                        {item.fieldName}
+                      </span>
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          target={item.href.startsWith("http") ? "_blank" : undefined}
+                          rel="noopener noreferrer"
+                          className="text-sm text-white/75 hover:text-accent transition-colors duration-200 truncate"
+                        >
+                          {item.fieldValue}
+                        </a>
+                      ) : (
+                        <span className="text-sm text-white/75">{item.fieldValue}</span>
+                      )}
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
+            </TabsContent>
+
           </div>
         </Tabs>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
