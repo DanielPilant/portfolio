@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { CiMenuFries } from "react-icons/ci";
@@ -28,6 +28,9 @@ const MobileNav = () => {
         side="right"
         className="flex flex-col w-72 bg-card border-l border-white/[0.06] p-0 gap-0"
       >
+        {/* Visually hidden title satisfies Radix Dialog accessibility requirement */}
+        <SheetTitle className="sr-only">Navigation menu</SheetTitle>
+
         {/* Logo */}
         <div className="flex items-center px-7 h-16 border-b border-white/[0.06] shrink-0">
           <Link
