@@ -1,12 +1,27 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { ProjectCard } from "@/components/ProjectCard";
+import { ProjectCard, cardVariants } from "@/components/ProjectCard";
 import type { Project } from "@/components/ProjectCard";
+import {
+  BsChevronDown,
+  BsArrowUpRight,
+  BsGithub,
+  BsList,
+  BsFillGridFill,
+} from "react-icons/bs";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 // ─── Project Data ──────────────────────────────────────────────────────────────
-// Each array maps to one tab. Add / remove entries freely — the UI adapts.
 
 const personalProjects: Project[] = [
   {
@@ -26,29 +41,77 @@ const personalProjects: Project[] = [
     live: "",
     github: "https://github.com/DanielPilant",
   },
+  {
+    num: "02",
+    category: "AI / browser automation / full-stack",
+    title: "AI-Powered Browser Automation & QA Platform",
+    description:
+      "A production-grade platform built at Hackathon 2025 that lets you control a real Chromium browser with natural language, watch it live in a web UI at 20 FPS, and automatically analyze failures using AI. An OpenAI Agents SDK loop translates plain-English prompts into Playwright MCP tool calls, streams JPEG screenshots over WebSocket to a React dashboard, and runs a three-stage failure analysis pipeline (rule-based classifier → LLM explainer) to categorize errors and suggest fixes — all containerized across 13 Docker services with full observability: Grafana, Prometheus, Loki, Tempo, and OpenTelemetry.",
+    stack: [
+      { name: "Python" },
+      { name: "FastAPI" },
+      { name: "OpenAI Agents SDK" },
+      { name: "Playwright MCP" },
+      { name: "React 19" },
+      { name: "Docker Compose" },
+      { name: "OpenTelemetry" },
+      { name: "WebSocket" },
+    ],
+    image: "/assets/images/TestFlow/image.png",
+    live: "",
+    github: "https://github.com/DanielPilant/Hackathon_EX_1",
+  },
   // TODO: Add more personal projects here
 ];
 
 const academicProjects: Project[] = [
   {
     num: "01",
-    category: "graphics / rendering",
-    title: "Java Ray Tracing Engine",
+    category: "full-stack / real-time / maps",
+    course: "Software Engineering",
+    title: "Live Trip",
     description:
-      "A fully custom-built ray tracing engine that simulates physically-based lighting: reflections, refractions, and soft shadows. Implements Phong shading, bounding-volume hierarchies for acceleration, and multi-sample anti-aliasing — all from first principles in pure Java.",
+      "A real-time crowd monitoring and trip planning web application. Users view an interactive full-screen map (MapLibre GL + MapTiler) with live crowd density levels at monitored sites, submit crowd reports, and check weather conditions. Features Google OAuth via Supabase Auth, site polygon overlays fetched from OpenStreetMap's Overpass API, dual-mode geocoding search, system-aware dark mode with matching map styles, and multi-language map labels with full RTL support (English, Hebrew, French). Backend powered by Supabase (PostgreSQL + Row Level Security) with Next.js Server Actions and REST API routes. E2E tested with Pytest + Selenium.",
     stack: [
-      { name: "Java" },
-      { name: "OOP Design Patterns" },
-      { name: "Linear Algebra" },
-      { name: "Physics Simulation" },
+      { name: "Next.js 16" },
+      { name: "TypeScript" },
+      { name: "Supabase" },
+      { name: "PostgreSQL" },
+      { name: "MapLibre GL" },
+      { name: "Tailwind CSS" },
+      { name: "Google OAuth" },
+      { name: "WeatherAPI" },
     ],
-    image: "/assets/images/assets/GoodPhotoYET2.png",
+    image: "/assets/images/liveTrip/live-trip.png",
     live: "",
     github: "",
   },
   {
     num: "02",
+    category: "AI / microservices / desktop",
+    course: "Windows Systems Engineering",
+    title: "ShopMate AI Assistant",
+    description:
+      "A smart, microservices-based shopping platform that helps users find the most cost-effective supermarket in Israel. A conversational AI agent (LangGraph + Llama 3.1) processes natural language, searches for products via a hybrid search engine, and runs a custom SQL optimisation algorithm to identify the single cheapest branch covering the full cart. Built across three decoupled services — AI Agent API, Core & DB API, and a PySide6 desktop client engineered with Micro-Frontend and MVP architecture. Includes an LLM-as-a-Judge hallucination filter to validate product matches before writing to the cart.",
+    stack: [
+      { name: "Python" },
+      { name: "LangGraph" },
+      { name: "Llama 3.1" },
+      { name: "RAG" },
+      { name: "FastAPI" },
+      { name: "PostgreSQL" },
+      { name: "PySide6" },
+      { name: "Microservices" },
+      { name: "MVP Pattern" },
+    ],
+    image: "/assets/images/shoppy/micros.jpg",
+    live: "",
+    github: "",
+  },
+  {
+    num: "03",
     category: "desktop / .NET",
+    course: "Windows Systems Engineering — Mini Project",
     title: "MissionForce",
     description:
       "A volunteer management system built with C# and .NET 8 WPF. Features a Material Design UI, real-time volunteer tracking, mission assignment workflows, and an embedded WebView2 component. Designed with a layered DAL / BL / PL architecture to streamline coordination for non-profits.",
@@ -62,6 +125,23 @@ const academicProjects: Project[] = [
     image: "/assets/images/assets/minip_windows_1.png",
     live: "",
     github: "https://github.com/DanielPilant/dotNet5785_1426_2126",
+  },
+  {
+    num: "04",
+    category: "graphics / rendering",
+    course: "Intro to Software Engineering — Mini Project",
+    title: "Java Ray Tracing Engine",
+    description:
+      "A fully custom-built ray tracing engine that simulates physically-based lighting: reflections, refractions, and soft shadows. Implements Phong shading, bounding-volume hierarchies for acceleration, and multi-sample anti-aliasing — all from first principles in pure Java.",
+    stack: [
+      { name: "Java" },
+      { name: "OOP Design Patterns" },
+      { name: "Linear Algebra" },
+      { name: "Physics Simulation" },
+    ],
+    image: "/assets/images/assets/GoodPhotoYET2.png",
+    live: "",
+    github: "",
   },
   // TODO: Add more academic projects here
 ];
@@ -167,14 +247,189 @@ const categories: {
 
 // ─── Animation variants ────────────────────────────────────────────────────────
 
-// Parent container staggers children (ProjectCard uses cardVariants as its child variant)
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.12, delayChildren: 0.05 },
+    transition: { staggerChildren: 0.1, delayChildren: 0.05 },
   },
 };
+
+// ─── Compact row (accordion) ───────────────────────────────────────────────────
+
+function CompactProjectRow({ project }: { project: Project }) {
+  const [open, setOpen] = useState(false);
+  const hasImage = !!project.image;
+  const hasLinks = project.live || project.github;
+  const PILL_PREVIEW = 3;
+
+  return (
+    <motion.div variants={cardVariants} className="overflow-hidden rounded-xl border border-white/[0.08]">
+      {/* ── Always-visible row ── */}
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className={[
+          "w-full flex items-center gap-4 px-5 py-4 text-left",
+          "bg-white/[0.03] hover:bg-white/[0.06]",
+          open ? "border-b border-white/[0.08]" : "",
+          "transition-colors duration-200 group",
+        ].join(" ")}
+      >
+        {/* Gradient number */}
+        <span
+          className="text-2xl font-extrabold leading-none shrink-0 w-10 text-right"
+          style={{
+            background: "linear-gradient(135deg, #00c3ff 0%, #9359ff 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
+          {project.num}
+        </span>
+
+        {/* Title + category */}
+        <div className="flex-1 min-w-0 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+          <span className="text-sm font-semibold text-white/85 group-hover:text-accent transition-colors duration-200 truncate leading-snug">
+            {project.title}
+          </span>
+          <span className="text-[10px] uppercase tracking-[0.12em] text-accent/70 border border-accent/20 rounded-full px-2.5 py-0.5 bg-accent/[0.06] font-semibold self-start sm:self-auto shrink-0">
+            {project.category}
+          </span>
+        </div>
+
+        {/* Stack pill preview */}
+        <div className="hidden md:flex items-center gap-1.5 shrink-0">
+          {project.stack.slice(0, PILL_PREVIEW).map((item, i) => (
+            <span
+              key={i}
+              className="text-[10px] px-2.5 py-0.5 rounded-full bg-white/[0.05] text-white/45 border border-white/[0.06] font-mono"
+            >
+              {item.name}
+            </span>
+          ))}
+          {project.stack.length > PILL_PREVIEW && (
+            <span className="text-[10px] text-white/30 font-mono">
+              +{project.stack.length - PILL_PREVIEW}
+            </span>
+          )}
+        </div>
+
+        {/* Chevron */}
+        <motion.div
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.25, ease: "easeOut" as const }}
+          className="shrink-0 text-white/30 group-hover:text-accent/60 transition-colors duration-200"
+        >
+          <BsChevronDown className="text-sm" />
+        </motion.div>
+      </button>
+
+      {/* ── Expandable content ── */}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            key="content"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" as const }}
+            style={{ overflow: "hidden" }}
+          >
+            <div
+              className={[
+                "flex gap-6 p-5 xl:p-7 bg-white/[0.025]",
+                hasImage ? "flex-col xl:flex-row" : "flex-col",
+              ].join(" ")}
+            >
+              {/* Left: details */}
+              <div className={`flex flex-col gap-4 ${hasImage ? "xl:w-[58%]" : "w-full"}`}>
+                {/* Course label */}
+                {project.course && (
+                  <span className="text-[11px] text-white/35 font-medium tracking-wide">
+                    {project.course}
+                  </span>
+                )}
+
+                {/* Description */}
+                <p className="text-white/50 text-sm leading-relaxed">
+                  {project.description}
+                </p>
+
+                {/* Full stack pills */}
+                <div className="flex flex-wrap gap-1.5">
+                  {project.stack.map((item, i) => (
+                    <span
+                      key={i}
+                      className="text-[11px] px-3 py-1 rounded-full bg-white/[0.05] text-white/55 border border-white/[0.07] font-mono tracking-tight"
+                    >
+                      {item.name}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Action links */}
+                {hasLinks && (
+                  <TooltipProvider delayDuration={200}>
+                    <div className="flex items-center gap-3 flex-wrap">
+                      {project.live && (
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Link
+                              href={project.live}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 text-xs text-white/60 hover:text-accent border border-white/10 hover:border-accent/40 rounded-full px-4 py-2 bg-white/[0.04] hover:bg-accent/[0.08] transition-all duration-300 font-medium"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <BsArrowUpRight className="text-sm" />
+                              Live Preview
+                            </Link>
+                          </TooltipTrigger>
+                          <TooltipContent>Open live site in new tab</TooltipContent>
+                        </Tooltip>
+                      )}
+                      {project.github && (
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Link
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 text-xs text-white/60 hover:text-accent border border-white/10 hover:border-accent/40 rounded-full px-4 py-2 bg-white/[0.04] hover:bg-accent/[0.08] transition-all duration-300 font-medium"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <BsGithub className="text-sm" />
+                              GitHub
+                            </Link>
+                          </TooltipTrigger>
+                          <TooltipContent>View source code</TooltipContent>
+                        </Tooltip>
+                      )}
+                    </div>
+                  </TooltipProvider>
+                )}
+              </div>
+
+              {/* Right: image */}
+              {hasImage && (
+                <div className="xl:w-[42%] relative min-h-[180px] xl:min-h-[220px] rounded-xl overflow-hidden border border-white/[0.08]">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-black/5 via-transparent to-black/25 pointer-events-none" />
+                </div>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
 
 // ─── Empty state ───────────────────────────────────────────────────────────────
 
@@ -197,6 +452,8 @@ function EmptyState() {
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
 export default function Work() {
+  const [viewMode, setViewMode] = useState<"compact" | "full">("compact");
+
   return (
     <div className="min-h-[80vh] py-12 xl:py-16">
       <div className="container mx-auto">
@@ -205,26 +462,58 @@ export default function Work() {
         <motion.div
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="mb-10"
+          transition={{ duration: 0.6, ease: "easeOut" as const }}
+          className="mb-10 flex items-start justify-between gap-4 flex-wrap"
         >
-          <h2 className="text-white mb-3">
-            My{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #00c3ff 0%, #9359ff 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
+          <div>
+            <h2 className="text-white mb-3">
+              My{" "}
+              <span
+                style={{
+                  background: "linear-gradient(135deg, #00c3ff 0%, #9359ff 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                Projects
+              </span>
+            </h2>
+            <p className="text-white/50 text-sm xl:text-base max-w-xl leading-relaxed">
+              A curated showcase spanning personal experiments, academic research,
+              and structured full-stack development.
+            </p>
+          </div>
+
+          {/* View toggle */}
+          <div className="flex items-center gap-1 p-1 rounded-xl bg-white/[0.04] border border-white/[0.07] self-start mt-1">
+            <button
+              onClick={() => setViewMode("compact")}
+              title="Compact list"
+              className={[
+                "flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-medium transition-all duration-200",
+                viewMode === "compact"
+                  ? "bg-accent/[0.15] text-accent border border-accent/30 shadow-[0_0_12px_rgba(0,195,255,0.12)]"
+                  : "text-white/40 hover:text-white/70",
+              ].join(" ")}
             >
-              Projects
-            </span>
-          </h2>
-          <p className="text-white/50 text-sm xl:text-base max-w-xl leading-relaxed">
-            A curated showcase spanning personal experiments, academic research,
-            and structured full-stack development.
-          </p>
+              <BsList className="text-base" />
+              <span className="hidden sm:inline">Compact</span>
+            </button>
+            <button
+              onClick={() => setViewMode("full")}
+              title="Full cards"
+              className={[
+                "flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-medium transition-all duration-200",
+                viewMode === "full"
+                  ? "bg-accent/[0.15] text-accent border border-accent/30 shadow-[0_0_12px_rgba(0,195,255,0.12)]"
+                  : "text-white/40 hover:text-white/70",
+              ].join(" ")}
+            >
+              <BsFillGridFill className="text-sm" />
+              <span className="hidden sm:inline">Full Cards</span>
+            </button>
+          </div>
         </motion.div>
 
         {/* Tabs */}
@@ -265,10 +554,21 @@ export default function Work() {
             <TabsContent key={cat.value} value={cat.value} className="mt-0">
               {cat.projects.length === 0 ? (
                 <EmptyState />
-              ) : (
-                // key={cat.value} re-mounts motion.div on tab change → re-triggers stagger
+              ) : viewMode === "compact" ? (
                 <motion.div
-                  key={cat.value}
+                  key={`${cat.value}-compact`}
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  className="flex flex-col gap-2"
+                >
+                  {cat.projects.map((project, idx) => (
+                    <CompactProjectRow key={idx} project={project} />
+                  ))}
+                </motion.div>
+              ) : (
+                <motion.div
+                  key={`${cat.value}-full`}
                   variants={containerVariants}
                   initial="hidden"
                   animate="visible"

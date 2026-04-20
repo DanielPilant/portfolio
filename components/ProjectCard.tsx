@@ -14,6 +14,7 @@ import {
 export interface Project {
   num: string;
   category: string;
+  course?: string;
   title: string;
   description: string;
   stack: { name: string }[];
@@ -57,10 +58,10 @@ export function ProjectCard({ project }: { project: Project }) {
       <div
         className={`flex flex-col gap-5 ${hasImage ? "xl:w-[55%]" : "w-full"}`}
       >
-        {/* Number + category chip */}
-        <div className="flex items-center gap-4">
+        {/* Number + category chip + optional course label */}
+        <div className="flex items-start gap-4">
           <span
-            className="text-5xl xl:text-6xl font-extrabold leading-none select-none"
+            className="text-5xl xl:text-6xl font-extrabold leading-none select-none shrink-0"
             style={{
               background: "linear-gradient(135deg, #00c3ff 0%, #9359ff 100%)",
               WebkitBackgroundClip: "text",
@@ -70,9 +71,16 @@ export function ProjectCard({ project }: { project: Project }) {
           >
             {project.num}
           </span>
-          <span className="text-[10px] xl:text-xs uppercase tracking-[0.14em] text-accent/80 border border-accent/25 rounded-full px-3 py-1 bg-accent/[0.07] font-semibold">
-            {project.category}
-          </span>
+          <div className="flex flex-col gap-1.5 pt-1">
+            <span className="text-[10px] xl:text-xs uppercase tracking-[0.14em] text-accent/80 border border-accent/25 rounded-full px-3 py-1 bg-accent/[0.07] font-semibold self-start">
+              {project.category}
+            </span>
+            {project.course && (
+              <span className="text-[10px] xl:text-xs text-white/35 font-medium tracking-wide pl-0.5">
+                {project.course}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Title */}
