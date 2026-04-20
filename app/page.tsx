@@ -21,13 +21,13 @@ const itemVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, ease: [0.25, 0.4, 0.25, 1] },
+    transition: { duration: 0.55, ease: "easeOut" as const },
   },
 };
 
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
-const Home = () => {
+export default function Home() {
   return (
     <section className="min-h-[calc(100vh-4rem)] xl:min-h-[calc(100vh-5rem)] flex items-center py-12 xl:py-0">
       <div className="container mx-auto">
@@ -54,7 +54,7 @@ const Home = () => {
               <span
                 style={{
                   background:
-                    "linear-gradient(135deg, #00c3ff 0%, #9359ff 100%)",
+                    "linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -69,14 +69,14 @@ const Home = () => {
               variants={itemVariants}
               className="max-w-[480px] mb-8 text-white/60 leading-relaxed"
             >
-              Third-year Software Engineering student building production-ready
-              systems at scale — AI-powered browser automation, microservice
+              Third-year Software Engineering student shipping production-grade
+              systems — AI-powered browser automation, microservice
               architectures, and real-time full-stack apps. Co-founder of{" "}
               <span className="text-white/85 font-medium">
-                DevLev Community
+                DevLev
               </span>
-              . Seeking a student or entry-level software engineering role to
-              ship meaningful work.
+              , JCT&apos;s developer community. Looking for a student or
+              entry-level role to build things that matter.
             </motion.p>
 
             {/* CTA row */}
@@ -90,7 +90,7 @@ const Home = () => {
                 className="uppercase tracking-widest text-xs font-semibold rounded-xl px-6 h-12 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 w-full sm:w-auto"
               >
                 <a
-                  href="/assets/resume/Copy of Daniel Pilant resume.docx (1).pdf"
+                  href="/assets/resume/Resume.pdf"
                   download="Daniel Pilant Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -114,7 +114,7 @@ const Home = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" as const }}
             className="order-1 xl:order-none mb-4 xl:mb-0"
           >
             <Photo />
@@ -124,6 +124,4 @@ const Home = () => {
       </div>
     </section>
   );
-};
-
-export default Home;
+}

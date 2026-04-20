@@ -23,7 +23,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 const about = {
   title: "About me",
   description:
-    "Motivated 3rd-year Software Engineering student (GPA: 85) with a strong foundation in modern software architecture and AI integration. Highly independent learner with a proven ability to quickly adapt to new technologies.",
+    "3rd-year Software Engineering student at JCT (GPA: 85) with hands-on experience building production-grade systems — spanning full-stack web apps, AI agent pipelines, and desktop applications. Fast learner who picks up new stacks quickly and writes clean, well-structured code.",
   info: [
     { fieldName: "Name",       fieldValue: "Daniel Pilant" },
     { fieldName: "Phone",      fieldValue: "058-4216328",              href: "tel:0584216328" },
@@ -38,7 +38,7 @@ const about = {
 const activities = {
   title: "Community & Leadership",
   description:
-    "Beyond academics, I dedicate time to community leadership and mentorship — co-founding DevLev, a student-led developer community at JCT, and teaching through the national Perach program.",
+    "Beyond academics, I invest in community leadership and mentorship — co-founding DevLev, a student-led developer community at JCT, coordinating multi-institutional educational programs as a Perach Project Coordinator, and teaching programming to young students.",
   items: [
     {
       institution: "Perach Scholar Program",
@@ -52,7 +52,7 @@ const activities = {
       institution: "DevLev – JCT Developer Student Club",
       title: "Co-Founder & Manager",
       description:
-        "DevLev is a student-led tech community I co-founded at JCT. We bridge academia and industry through hands-on workshops, hack nights, and networking events.",
+        "A student-led developer community I co-founded at JCT to bridge academia and industry — running hands-on workshops, hack nights, and networking events that connect students with real-world engineering.",
       duration: "2025 – 2026",
       images: ["/assets/images/DEVLEV.jpg", "/assets/images/DEVLEVMATAN.jpg", "/assets/images/DEVLEVMEETUP1_2.jpg", "/assets/images/DEVLEVMEETUP1.jpg"],
     },
@@ -68,7 +68,7 @@ const activities = {
       institution: "Perach Scholar Program",
       title: "Programming Teacher",
       description:
-        "Taught programming (Scratch, Arduino) and basic electrical engineering to 5th–6th grade students, developing interactive lessons to introduce young learners to fundamental concepts in technology and computing.",
+        "Taught programming (Scratch, Arduino) and basic electronics to 5th–6th graders, designing hands-on lessons that made technology tangible and exciting for young learners.",
       duration: "2023 – 2025",
       images: ["/assets/images/SCHOOLCER.jpg", "/assets/images/SCHOOLCHACKATHON.jpg", "/assets/images/SCHOOLPROJECT1.jpg", "/assets/images/teacher.jpg"],
     },
@@ -78,7 +78,7 @@ const activities = {
 const education = {
   title: "My education",
   description:
-    "Pursuing a B.Sc. in Software Engineering at JCT (GPA: 85), building strong foundations in modern software architecture, AI integration, and full-stack development.",
+    "Pursuing a B.Sc. in Software Engineering at JCT (GPA: 85), with coursework spanning software architecture, AI systems, operating systems, databases, and full-stack development.",
   items: [
     {
       institution: "Jerusalem College of Technology (JCT)",
@@ -91,7 +91,7 @@ const education = {
 const skills = {
   title: "My skills",
   description:
-    "From full-stack web and mobile development to AI agent engineering, here are the technologies and tools I work with.",
+    "Languages, frameworks, and tools I reach for across full-stack web, AI pipelines, desktop apps, and infrastructure.",
   items: [
     // Languages
     { icon: <FaPython className="w-7 h-7" />,       name: "Python" },
@@ -163,7 +163,7 @@ function SectionHeader({ title, description }: { title: string; description: str
 
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
-const Resume = () => {
+export default function Resume() {
   return (
     <div className="min-h-[80vh] py-12 xl:py-20">
       <div className="container mx-auto">
@@ -229,8 +229,8 @@ const Resume = () => {
                       <motion.li key={i} variants={skillItem}>
                         <Tooltip>
                           <TooltipTrigger asChild>
-                            <div className="flex flex-col items-center justify-center gap-2.5 p-4 rounded-xl bg-white/[0.03] border border-white/[0.07] hover:border-accent/30 hover:bg-accent/[0.05] hover:scale-[1.04] active:scale-[0.97] transition-all duration-250 cursor-default group aspect-square">
-                              <span className="text-white/55 group-hover:text-accent transition-colors duration-250">
+                            <div className="flex flex-col items-center justify-center gap-2.5 p-4 rounded-xl bg-white/[0.03] border border-white/[0.07] hover:border-accent/30 hover:bg-accent/[0.05] hover:scale-[1.04] active:scale-[0.97] transition-all duration-300 cursor-default group aspect-square">
+                              <span className="text-white/55 group-hover:text-accent transition-colors duration-300">
                                 {skill.icon}
                               </span>
                               <span className="text-[10px] xl:text-xs text-white/45 group-hover:text-white/70 transition-colors text-center leading-tight font-medium">
@@ -277,7 +277,7 @@ const Resume = () => {
                                     fill
                                     sizes="(max-width: 640px) 50vw, (max-width: 1280px) 25vw, 20vw"
                                     priority={i === 0 && j === 0}
-                                    className="object-cover group-hover:scale-[1.03] transition-transform duration-400"
+                                    className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
                                   />
                                 </div>
                               ))}
@@ -352,6 +352,4 @@ const Resume = () => {
       </div>
     </div>
   );
-};
-
-export default Resume;
+}

@@ -61,7 +61,6 @@ const personalProjects: Project[] = [
     live: "",
     github: "https://github.com/DanielPilant/Hackathon_EX_1",
   },
-  // TODO: Add more personal projects here
 ];
 
 const academicProjects: Project[] = [
@@ -143,7 +142,6 @@ const academicProjects: Project[] = [
     live: "",
     github: "",
   },
-  // TODO: Add more academic projects here
 ];
 
 const courseProjects: Project[] = [
@@ -214,7 +212,6 @@ const courseProjects: Project[] = [
     live: "",
     github: "https://github.com/DanielPilant/project_4",
   },
-  // TODO: Add more Full Stack Course projects here (project 5, 6, 7)
 ];
 
 // ─── Category configuration ────────────────────────────────────────────────────
@@ -279,7 +276,7 @@ function CompactProjectRow({ project }: { project: Project }) {
         <span
           className="text-2xl font-extrabold leading-none shrink-0 w-10 text-right"
           style={{
-            background: "linear-gradient(135deg, #00c3ff 0%, #9359ff 100%)",
+            background: "linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
@@ -470,7 +467,7 @@ export default function Work() {
               My{" "}
               <span
                 style={{
-                  background: "linear-gradient(135deg, #00c3ff 0%, #9359ff 100%)",
+                  background: "linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -480,8 +477,8 @@ export default function Work() {
               </span>
             </h2>
             <p className="text-white/50 text-sm xl:text-base max-w-xl leading-relaxed">
-              A curated showcase spanning personal experiments, academic research,
-              and structured full-stack development.
+              A curated showcase of personal experiments, academic projects, and
+              structured full-stack development — from AI agents to ray tracers.
             </p>
           </div>
 

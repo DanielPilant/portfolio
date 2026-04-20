@@ -63,7 +63,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <span
             className="text-5xl xl:text-6xl font-extrabold leading-none select-none shrink-0"
             style={{
-              background: "linear-gradient(135deg, #00c3ff 0%, #9359ff 100%)",
+              background: "linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
