@@ -33,7 +33,7 @@ export default function Home() {
   const floorRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="relative overflow-hidden min-h-[calc(100vh-4rem)] xl:min-h-[calc(100vh-5rem)] flex flex-col justify-center py-10 xl:py-12">
+    <section className="relative overflow-x-hidden min-h-[calc(100vh-4rem)] xl:min-h-[calc(100vh-5rem)] flex flex-col justify-center py-10 xl:py-12">
 
       {/* Physics canvas — absolute overlay, pointer-events-none */}
       <PhysicsCanvas floorRef={floorRef} />
