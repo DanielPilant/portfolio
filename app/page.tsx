@@ -1,10 +1,12 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { FiDownload } from "react-icons/fi";
 import Socials from "@/components/Socials";
 import Photo from "@/components/Photo";
+import { PhysicsCanvas } from "@/components/PhysicsCanvas";
 
 // ─── Animation variants ────────────────────────────────────────────────────────
 
@@ -28,11 +30,19 @@ const itemVariants = {
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
 export default function Home() {
+  const floorRef = useRef<HTMLDivElement>(null);
+
   return (
-    <section className="min-h-[calc(100vh-4rem)] xl:min-h-[calc(100vh-5rem)] flex flex-col justify-center py-10 xl:py-12 gap-10 xl:gap-12">
-      <div className="container mx-auto">
+    <section className="relative overflow-hidden min-h-[calc(100vh-4rem)] xl:min-h-[calc(100vh-5rem)] flex flex-col justify-center py-10 xl:py-12">
+
+      {/* Physics canvas — absolute overlay, pointer-events-none */}
+      <PhysicsCanvas floorRef={floorRef} />
+
+      <div className="relative z-10 container mx-auto flex flex-col gap-10 xl:gap-12">
+
         {/* ── Hero row ─────────────────────────────────────────────────────── */}
         <div className="flex flex-col xl:flex-row items-center justify-between gap-10 xl:gap-16">
+
           {/* Text column */}
           <motion.div
             variants={containerVariants}
@@ -120,10 +130,11 @@ export default function Home() {
 
         {/* ── GitHub Activity strip ─────────────────────────────────────────── */}
         <motion.div
+          ref={floorRef}
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.85, ease: "easeOut" as const }}
-          className="flex flex-col gap-2 mt-10 xl:mt-12"
+          className="flex flex-col gap-2"
         >
           <p className="text-[10px] uppercase tracking-[0.18em] text-white/25 font-semibold">
             GitHub Activity
@@ -134,12 +145,11 @@ export default function Home() {
               src="https://raw.githubusercontent.com/DanielPilant/DanielPilant/output/github-contribution-grid-snake-dark.svg"
               alt="GitHub contribution snake"
               className="w-full h-[80px] xl:h-[100px] object-cover object-center"
-              style={{
-                filter: "hue-rotate(65deg) saturate(1.5) brightness(1.1)",
-              }}
+              style={{ filter: "hue-rotate(65deg) saturate(1.5) brightness(1.1)" }}
             />
           </div>
         </motion.div>
+
       </div>
     </section>
   );
