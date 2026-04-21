@@ -29,7 +29,7 @@ const personalProjects: Project[] = [
     category: "web / portfolio",
     title: "Portfolio Website",
     description:
-      "This very site — a personal developer portfolio crafted with Next.js 15, Tailwind CSS v4, and Framer Motion. Features an animated landing screen, an interactive tabbed resume with skill icons, glassmorphic project cards, and a contact form, all optimised for performance and accessibility.",
+      "This site — built with Next.js 15 App Router, Tailwind CSS v4, and Framer Motion. Architecturally it's a statically-exported app with component-scoped design tokens, a live Matter.js physics simulation running on an HTML5 canvas layer with hit-test pass-through so underlying UI elements remain interactive, and CSS scrollbar-gutter stabilisation to prevent reflow when content overflows.",
     stack: [
       { name: "Next.js 15" },
       { name: "TypeScript" },
@@ -46,7 +46,7 @@ const personalProjects: Project[] = [
     category: "AI / browser automation / full-stack",
     title: "AI-Powered Browser Automation & QA Platform",
     description:
-      "A production-grade platform built at Hackathon 2025 that lets you control a real Chromium browser with natural language, watch it live in a web UI at 20 FPS, and automatically analyze failures using AI. An OpenAI Agents SDK loop translates plain-English prompts into Playwright MCP tool calls, streams JPEG screenshots over WebSocket to a React dashboard, and runs a three-stage failure analysis pipeline (rule-based classifier → LLM explainer) to categorize errors and suggest fixes — all containerized across 13 Docker services with full observability: Grafana, Prometheus, Loki, Tempo, and OpenTelemetry.",
+      "Built at Hackathon 2025: a natural-language browser automation platform where you describe a test scenario in plain English and watch a real Chromium instance execute it live at ~20 FPS. The core architectural challenge was orchestrating an async agent loop (OpenAI Agents SDK) that translates prompts into Playwright MCP tool calls, while streaming JPEG screenshots over WebSocket to a React dashboard with low enough latency to feel interactive. Test failures trigger a three-stage analysis pipeline — rule-based classifier → LLM explainer — that categorises errors and suggests fixes. Deployed across 13 Docker Compose services with full observability: Grafana, Prometheus, Loki, Tempo, and OpenTelemetry.",
     stack: [
       { name: "Python" },
       { name: "FastAPI" },
@@ -70,7 +70,7 @@ const academicProjects: Project[] = [
     course: "Software Engineering",
     title: "Live Trip",
     description:
-      "A real-time crowd monitoring and trip planning web application. Users view an interactive full-screen map (MapLibre GL + MapTiler) with live crowd density levels at monitored sites, submit crowd reports, and check weather conditions. Features Google OAuth via Supabase Auth, site polygon overlays fetched from OpenStreetMap's Overpass API, dual-mode geocoding search, system-aware dark mode with matching map styles, and multi-language map labels with full RTL support (English, Hebrew, French). Backend powered by Supabase (PostgreSQL + Row Level Security) with Next.js Server Actions and REST API routes. E2E tested with Pytest + Selenium.",
+      "A full-stack real-time crowd monitoring application. The central design challenge was composing multiple external APIs — MapLibre GL + MapTiler for rendering, OpenStreetMap's Overpass API for on-demand site polygon boundaries, WeatherAPI for conditions, and Supabase for auth + a PostgreSQL backend with Row Level Security — into a coherent, low-latency user experience. Data mutations flow through Next.js Server Actions with optimistic UI; Google OAuth is handled via Supabase Auth; polygons are fetched on-demand and cached client-side. Includes dual-mode geocoding, full RTL support (Hebrew, English, French), system-aware map themes, and E2E test coverage with Pytest + Selenium.",
     stack: [
       { name: "Next.js 16" },
       { name: "TypeScript" },
@@ -91,7 +91,7 @@ const academicProjects: Project[] = [
     course: "Windows Systems Engineering",
     title: "ShopMate AI Assistant",
     description:
-      "A smart, microservices-based shopping platform that helps users find the most cost-effective supermarket in Israel. A conversational AI agent (LangGraph + Llama 3.1) processes natural language, searches for products via a hybrid search engine, and runs a custom SQL optimisation algorithm to identify the single cheapest branch covering the full cart. Built across three decoupled services — AI Agent API, Core & DB API, and a PySide6 desktop client engineered with Micro-Frontend and MVP architecture. Includes an LLM-as-a-Judge hallucination filter to validate product matches before writing to the cart.",
+      "A microservices-based shopping assistant that finds the cheapest single Israeli supermarket branch for a given cart. The interesting engineering problems: a hybrid search engine for fuzzy product matching, a custom SQL optimisation query that solves a 'cheapest full-coverage branch' problem across thousands of products and locations, and an LLM-as-a-Judge hallucination filter that validates AI-generated product matches before they're committed to the cart. Architected across three decoupled services — a LangGraph + Llama 3.1 AI Agent API, a Core & Database API (FastAPI + PostgreSQL), and a PySide6 desktop client following Micro-Frontend + MVP patterns — so each service can evolve and be tested independently.",
     stack: [
       { name: "Python" },
       { name: "LangGraph" },
@@ -113,7 +113,7 @@ const academicProjects: Project[] = [
     course: "Windows Systems Engineering — Mini Project",
     title: "MissionForce",
     description:
-      "A volunteer management system built with C# and .NET 8 WPF. Features a Material Design UI, real-time volunteer tracking, mission assignment workflows, and an embedded WebView2 component. Designed with a layered DAL / BL / PL architecture to streamline coordination for non-profits.",
+      "A volunteer coordination and mission management desktop application built with C# and .NET 8 WPF. The primary focus was a strict three-layer architecture (DAL / BL / PL) to isolate data access, business rules, and presentation — so the domain logic could be tested and evolved independently of the UI. Features a Material Design interface, real-time volunteer tracking, mission assignment workflows, and an embedded WebView2 panel.",
     stack: [
       { name: "C#" },
       { name: ".NET 8" },
@@ -131,7 +131,7 @@ const academicProjects: Project[] = [
     course: "Intro to Software Engineering — Mini Project",
     title: "Java Ray Tracing Engine",
     description:
-      "A fully custom-built ray tracing engine that simulates physically-based lighting: reflections, refractions, and soft shadows. Implements Phong shading, bounding-volume hierarchies for acceleration, and multi-sample anti-aliasing — all from first principles in pure Java.",
+      "A ray tracing renderer built entirely from first principles in Java — no graphics libraries, just linear algebra and physics. The core engineering challenge was performance: naïve ray tracing is O(n) per pixel for n scene objects, so I implemented a Bounding Volume Hierarchy (BVH) to bring intersection tests down to O(log n). The renderer supports Phong shading, reflections, refractions, soft shadows via area lights, and multi-sample anti-aliasing. A deep exercise in understanding how 3D graphics actually work at the mathematical level.",
     stack: [
       { name: "Java" },
       { name: "OOP Design Patterns" },
@@ -150,7 +150,7 @@ const courseProjects: Project[] = [
     category: "HTML & CSS / front-end",
     title: "Streamly",
     description:
-      "A front-end movie browsing website built entirely with HTML5 and CSS3 — the first project in a 7-part Full-Stack Development course. Features a Netflix-style layout with genre category pages, movie cards with hover effects, YouTube trailer embeds via iframe, and a fully responsive design built on Flexbox and CSS Grid.",
+      "Project 1 of 7 in a structured Full-Stack Development course: a Netflix-style movie browsing UI built purely with HTML5 and CSS3. The deliberate constraint was no JavaScript — the goal was mastering the layout fundamentals first: Flexbox, CSS Grid, responsive breakpoints, and semantic markup. Features genre category pages, movie cards with hover effects, YouTube trailer embeds, and a fully responsive design.",
     stack: [
       { name: "HTML5" },
       { name: "CSS3" },
@@ -166,7 +166,7 @@ const courseProjects: Project[] = [
     category: "HTML, CSS & JavaScript / front-end",
     title: "Web Game Platform",
     description:
-      "A multi-game web platform built with pure HTML5, CSS3, and Vanilla JavaScript — the second project in a 7-part Full-Stack course. Features a login/auth screen, a personalised game lobby with per-user leaderboards, a modernised Snake game with custom graphics and sound, and a full two-player PVP Chess implementation with complete piece-movement rules, undo history, move logging, and a competitive scoring system. All state persisted via localStorage.",
+      "Project 2 of 7: a multi-game platform built with pure Vanilla JS (no frameworks), focused on DOM manipulation and client-side state management from scratch. Features per-user auth, personalised game lobbies, per-user leaderboards, a Snake clone with custom graphics and sound, and a full two-player Chess implementation with complete piece-movement validation, undo history, and move logging — all state managed in localStorage.",
     stack: [
       { name: "HTML5" },
       { name: "CSS3" },
@@ -183,7 +183,7 @@ const courseProjects: Project[] = [
     category: "SPA / vanilla JS full-stack",
     title: "TaskMaster",
     description:
-      "A complete Single Page Application built from scratch with Vanilla JS, HTML5, and CSS3 — no libraries or frameworks. Simulates an entire client-server ecosystem in the browser: custom hash-based SPA router, FAJAX (a hand-rolled XHR client with Bearer token injection and auto-retry), a network layer with artificial latency and 20% packet-drop rate, a dispatcher routing to separate Auth and App servers, and localStorage-backed user and task databases. Full CRUD task management with session auth.",
+      "Project 3 of 7, intentionally designed to teach how web infrastructure works by re-building it from scratch. The most educational part: simulating an entire client-server ecosystem inside the browser — a custom hash-based SPA router, a hand-rolled XHR client ('FAJAX') with Bearer token injection and auto-retry, and a simulated network layer with artificial latency and a 20% packet-drop rate. A request dispatcher routes traffic to separate Auth and App servers backed by localStorage. Full CRUD task management with session auth. Gave me a deep appreciation for what modern frameworks actually abstract away.",
     stack: [
       { name: "Vanilla JS (ES6+)" },
       { name: "HTML5 Templates" },
@@ -201,7 +201,7 @@ const courseProjects: Project[] = [
     category: "React / front-end app",
     title: "Visual Text Editor",
     description:
-      "A React 19 rich-text editor built as project 4 of 7 in an academic Full-Stack program. Features user authentication, multi-document tab management, a custom virtual keyboard with English, Hebrew, and Emoji layouts, text formatting controls (font family, size, colour), undo history, find & replace, and full file management (new, save, save-as, open, delete). All user data and documents persisted in localStorage. Built with Vite and CSS Modules for component-scoped styling.",
+      "Project 4 of 7 and my first React project, focused on learning component architecture and unidirectional state management. Features a full rich-text editing experience: multi-document tab management, a custom virtual keyboard (English, Hebrew, Emoji), text formatting controls, undo history, find & replace, and complete file management. Built with React 19, Vite, and CSS Modules for component-scoped styling; all state persisted in localStorage.",
     stack: [
       { name: "React 19" },
       { name: "Vite" },
@@ -477,8 +477,10 @@ export default function Work() {
               </span>
             </h2>
             <p className="text-white/50 text-sm xl:text-base max-w-xl leading-relaxed">
-              A curated showcase of personal experiments, academic projects, and
-              structured full-stack development — from AI agents to ray tracers.
+              Systems I&apos;ve designed and built from the ground up — spanning AI
+              agent architectures, microservices, real-time backends, and
+              graphics engines. Click any project to explore the engineering
+              decisions behind it.
             </p>
           </div>
 

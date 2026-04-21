@@ -23,7 +23,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 const about = {
   title: "About me",
   description:
-    "3rd-year Software Engineering student at JCT (GPA: 85) with hands-on experience building production-grade systems — spanning full-stack web apps, AI agent pipelines, and desktop applications. Fast learner who picks up new stacks quickly and writes clean, well-structured code.",
+    "3rd-year Software Engineering student at JCT (GPA: 85), focused on Backend development and System Design. I'm drawn to understanding how systems work under the hood — from database architecture and API design to service communication and performance trade-offs. I pick up new stacks quickly and care deeply about writing clean, well-structured code.",
   info: [
     { fieldName: "Name",       fieldValue: "Daniel Pilant" },
     { fieldName: "Phone",      fieldValue: "058-4216328",              href: "tel:0584216328" },
@@ -38,13 +38,13 @@ const about = {
 const activities = {
   title: "Community & Leadership",
   description:
-    "Beyond academics, I invest in community leadership and mentorship — co-founding DevLev, a student-led developer community at JCT, coordinating multi-institutional educational programs as a Perach Project Coordinator, and teaching programming to young students.",
+    "Outside of engineering, I'm invested in giving back to the student and tech community — through leadership roles, mentorship, and hands-on teaching.",
   items: [
     {
       institution: "Perach Scholar Program",
       title: "Project Program Coordinator",
       description:
-        "Overseeing educational mentorship programs across multiple institutions including The Israel Museum, Infinity Project, and Code Plus — coordinating volunteers, planning curricula, and bridging students with real-world learning opportunities.",
+        "Managing and mentoring a team of 50+ student mentors across multiple educational programs at Perach. Responsibilities span end-to-end recruitment and onboarding of new mentors, overseeing active programs at partner institutions, and handling the day-to-day administrative workflows that keep the organisation running.",
       duration: "2025 – Present",
       images: [],
     },
@@ -52,7 +52,7 @@ const activities = {
       institution: "DevLev – JCT Developer Student Club",
       title: "Co-Founder & Manager",
       description:
-        "A student-led developer community I co-founded at JCT to bridge academia and industry — running hands-on workshops, hack nights, and networking events that connect students with real-world engineering.",
+        "Co-founded JCT's student developer community from scratch to close the gap between university coursework and industry practice. Organising hands-on workshops, hack nights, and networking events that expose students to real engineering culture and professional mentors.",
       duration: "2025 – 2026",
       images: ["/assets/images/DEVLEV.jpg", "/assets/images/DEVLEVMATAN.jpg", "/assets/images/DEVLEVMEETUP1_2.jpg", "/assets/images/DEVLEVMEETUP1.jpg"],
     },
@@ -60,7 +60,7 @@ const activities = {
       institution: "JCT – Hackathon 2024",
       title: "3rd Place – Hackathon 2024",
       description:
-        "ResqDoc: an AI-assisted documentation platform for United Hatzalah's emergency teams. Enables first responders to generate and manage medical reports in real time during rescue operations.",
+        "ResqDoc: an AI-assisted documentation platform built for United Hatzalah's emergency response teams. Enables first responders to generate and manage structured medical reports in real time, directly during active rescue operations.",
       duration: "2024",
       images: ["/assets/images/Hackathon_1.jpg", "/assets/images/Hackathon_2.jpg", "/assets/images/Hackathon_3.jpg", "/assets/images/Hackathon_4.jpg"],
     },
@@ -68,7 +68,7 @@ const activities = {
       institution: "Perach Scholar Program",
       title: "Programming Teacher",
       description:
-        "Taught programming (Scratch, Arduino) and basic electronics to 5th–6th graders, designing hands-on lessons that made technology tangible and exciting for young learners.",
+        "Designed and taught hands-on programming and electronics lessons (Scratch, Arduino) for 5th–6th graders — translating abstract CS concepts into tangible projects that sparked genuine curiosity about technology.",
       duration: "2023 – 2025",
       images: ["/assets/images/SCHOOLCER.jpg", "/assets/images/SCHOOLCHACKATHON.jpg", "/assets/images/SCHOOLPROJECT1.jpg", "/assets/images/teacher.jpg"],
     },
@@ -78,7 +78,7 @@ const activities = {
 const education = {
   title: "My education",
   description:
-    "Pursuing a B.Sc. in Software Engineering at JCT (GPA: 85), with coursework spanning software architecture, AI systems, operating systems, databases, and full-stack development.",
+    "Pursuing a B.Sc. in Software Engineering at JCT (GPA: 85). Core coursework spans software architecture, operating systems, databases, algorithms, and AI systems — giving me a solid theoretical foundation to complement my hands-on building.",
   items: [
     {
       institution: "Jerusalem College of Technology (JCT)",
@@ -91,7 +91,7 @@ const education = {
 const skills = {
   title: "My skills",
   description:
-    "Languages, frameworks, and tools I reach for across full-stack web, AI pipelines, desktop apps, and infrastructure.",
+    "Languages, frameworks, and tools I've built real systems with — spanning backend APIs, AI pipelines, full-stack web, and desktop applications.",
   items: [
     // Languages
     { icon: <FaPython className="w-7 h-7" />,       name: "Python" },

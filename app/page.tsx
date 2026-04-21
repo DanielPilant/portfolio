@@ -79,12 +79,13 @@ export default function Home() {
               variants={itemVariants}
               className="max-w-[480px] mb-8 text-white/60 leading-relaxed"
             >
-              Third-year Software Engineering student shipping production-grade
-              systems — AI-powered browser automation, microservice
-              architectures, and real-time full-stack apps. Co-founder of{" "}
-              <span className="text-white/85 font-medium">DevLev</span>,
-              JCT&apos;s developer community. Looking for a student or
-              entry-level role to build things that matter.
+              Third-year Software Engineering student driven by a fascination
+              with how complex systems operate behind the scenes. My focus lies
+              in Backend development and System Design, constantly exploring how
+              to architect scalable and efficient applications. I enjoy bridging
+              the gap between high-level web development and low-level system
+              mechanics. Seeking a backend or software engineering role to tackle
+              hard architectural challenges and write robust code.
             </motion.p>
 
             {/* CTA row */}
