@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { ImageLightbox } from "@/components/ImageLightbox";
 
 import {
   FaFigma, FaJava, FaDatabase, FaGithub,
@@ -164,7 +166,17 @@ function SectionHeader({ title, description }: { title: string; description: str
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
 export default function Resume() {
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+
   return (
+    <>
+    {lightbox && (
+      <ImageLightbox
+        src={lightbox.src}
+        alt={lightbox.alt}
+        onClose={() => setLightbox(null)}
+      />
+    )}
     <div className="min-h-[80vh] py-12 xl:py-20">
       <div className="container mx-auto">
         <Tabs
@@ -267,9 +279,10 @@ export default function Resume() {
                           {item.images.length > 0 && (
                             <div className="xl:basis-[55%] grid grid-cols-2 gap-2.5">
                               {item.images.slice(0, 4).map((src, j) => (
-                                <div
+                                <button
                                   key={j}
-                                  className="relative aspect-[4/3] rounded-xl overflow-hidden border border-white/[0.07]"
+                                  onClick={() => setLightbox({ src, alt: `${item.title} ${j + 1}` })}
+                                  className="relative aspect-[4/3] rounded-xl overflow-hidden border border-white/[0.07] hover:border-accent/40 hover:ring-1 hover:ring-accent/20 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
                                 >
                                   <Image
                                     src={src}
@@ -279,7 +292,7 @@ export default function Resume() {
                                     priority={i === 0 && j === 0}
                                     className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
                                   />
-                                </div>
+                                </button>
                               ))}
                             </div>
                           )}
@@ -351,5 +364,6 @@ export default function Resume() {
         </Tabs>
       </div>
     </div>
+    </>
   );
 }

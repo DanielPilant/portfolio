@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { ProjectCard, cardVariants } from "@/components/ProjectCard";
+import { ImageLightbox } from "@/components/ImageLightbox";
 import type { Project } from "@/components/ProjectCard";
 import {
   BsChevronDown,
@@ -254,7 +255,13 @@ const containerVariants = {
 
 // ─── Compact row (accordion) ───────────────────────────────────────────────────
 
-function CompactProjectRow({ project }: { project: Project }) {
+function CompactProjectRow({
+  project,
+  onImageClick,
+}: {
+  project: Project;
+  onImageClick: (src: string, alt: string) => void;
+}) {
   const [open, setOpen] = useState(false);
   const hasImage = !!project.image;
   const hasLinks = project.live || project.github;
@@ -410,7 +417,10 @@ function CompactProjectRow({ project }: { project: Project }) {
 
               {/* Right: image */}
               {hasImage && (
-                <div className="xl:w-[42%] relative min-h-[180px] xl:min-h-[220px] rounded-xl overflow-hidden border border-white/[0.08]">
+                <button
+                  onClick={() => onImageClick(project.image, project.title)}
+                  className="xl:w-[42%] relative min-h-[180px] xl:min-h-[220px] rounded-xl overflow-hidden border border-white/[0.08] hover:border-accent/40 hover:ring-1 hover:ring-accent/20 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 cursor-pointer"
+                >
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -418,7 +428,7 @@ function CompactProjectRow({ project }: { project: Project }) {
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-br from-black/5 via-transparent to-black/25 pointer-events-none" />
-                </div>
+                </button>
               )}
             </div>
           </motion.div>
@@ -450,8 +460,18 @@ function EmptyState() {
 
 export default function Work() {
   const [viewMode, setViewMode] = useState<"compact" | "full">("compact");
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
+  const openLightbox = (src: string, alt: string) => setLightbox({ src, alt });
 
   return (
+    <>
+    {lightbox && (
+      <ImageLightbox
+        src={lightbox.src}
+        alt={lightbox.alt}
+        onClose={() => setLightbox(null)}
+      />
+    )}
     <div className="min-h-[80vh] py-12 xl:py-16">
       <div className="container mx-auto">
 
@@ -562,7 +582,7 @@ export default function Work() {
                   className="flex flex-col gap-2"
                 >
                   {cat.projects.map((project, idx) => (
-                    <CompactProjectRow key={idx} project={project} />
+                    <CompactProjectRow key={idx} project={project} onImageClick={openLightbox} />
                   ))}
                 </motion.div>
               ) : (
@@ -574,7 +594,7 @@ export default function Work() {
                   className="flex flex-col gap-5 xl:gap-6"
                 >
                   {cat.projects.map((project, idx) => (
-                    <ProjectCard key={idx} project={project} />
+                    <ProjectCard key={idx} project={project} onImageClick={openLightbox} />
                   ))}
                 </motion.div>
               )}
@@ -584,5 +604,6 @@ export default function Work() {
         </Tabs>
       </div>
     </div>
+    </>
   );
 }

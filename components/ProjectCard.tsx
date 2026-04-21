@@ -33,7 +33,13 @@ export const cardVariants = {
   },
 };
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  onImageClick,
+}: {
+  project: Project;
+  onImageClick?: (src: string, alt: string) => void;
+}) {
   const hasImage = !!project.image;
   const hasLinks = project.live || project.github;
 
@@ -153,7 +159,10 @@ export function ProjectCard({ project }: { project: Project }) {
 
       {/* ── Right: image column ───────────────────────────────── */}
       {hasImage && (
-        <div className="xl:w-[45%] relative min-h-[200px] xl:min-h-[260px] rounded-xl overflow-hidden border border-white/[0.08]">
+        <button
+          onClick={() => onImageClick?.(project.image, project.title)}
+          className="xl:w-[45%] relative min-h-[200px] xl:min-h-[260px] rounded-xl overflow-hidden border border-white/[0.08] hover:border-accent/40 hover:ring-1 hover:ring-accent/20 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 cursor-pointer"
+        >
           <Image
             src={project.image}
             alt={project.title}
@@ -162,7 +171,7 @@ export function ProjectCard({ project }: { project: Project }) {
           />
           {/* Subtle vignette overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-black/5 via-transparent to-black/25 pointer-events-none" />
-        </div>
+        </button>
       )}
     </motion.div>
   );
