@@ -29,10 +29,11 @@ const itemVariants = {
 
 export default function Home() {
   return (
-    <section className="min-h-[calc(100vh-4rem)] xl:min-h-[calc(100vh-5rem)] flex items-center py-12 xl:py-0">
+    <section className="min-h-[calc(100vh-4rem)] xl:min-h-[calc(100vh-5rem)] flex flex-col justify-center py-10 xl:py-12 gap-10 xl:gap-12">
       <div className="container mx-auto">
+        {/* ── Hero row ─────────────────────────────────────────────────────── */}
         <div className="flex flex-col xl:flex-row items-center justify-between gap-10 xl:gap-16">
-          {/* ── Text column ──────────────────────────────────────────────── */}
+          {/* Text column */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
@@ -63,7 +64,7 @@ export default function Home() {
               </span>
             </motion.h1>
 
-            {/* Bio — punchy, scannable */}
+            {/* Bio */}
             <motion.p
               variants={itemVariants}
               className="max-w-[480px] mb-8 text-white/60 leading-relaxed"
@@ -97,7 +98,6 @@ export default function Home() {
                 </a>
               </Button>
 
-              {/* Vertical rule separating button from socials */}
               <div className="hidden sm:block w-px h-8 bg-white/[0.12]" />
 
               <Socials
@@ -107,7 +107,7 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* ── Photo column ─────────────────────────────────────────────── */}
+          {/* Photo column */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -117,6 +117,29 @@ export default function Home() {
             <Photo />
           </motion.div>
         </div>
+
+        {/* ── GitHub Activity strip ─────────────────────────────────────────── */}
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.85, ease: "easeOut" as const }}
+          className="flex flex-col gap-2 mt-10 xl:mt-12"
+        >
+          <p className="text-[10px] uppercase tracking-[0.18em] text-white/25 font-semibold">
+            GitHub Activity
+          </p>
+          <div className="rounded-xl overflow-hidden border border-white/[0.07]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://raw.githubusercontent.com/DanielPilant/DanielPilant/output/github-contribution-grid-snake-dark.svg"
+              alt="GitHub contribution snake"
+              className="w-full h-[80px] xl:h-[100px] object-cover object-center"
+              style={{
+                filter: "hue-rotate(65deg) saturate(1.5) brightness(1.1)",
+              }}
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
