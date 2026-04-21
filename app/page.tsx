@@ -32,7 +32,6 @@ export default function Home() {
     <section className="min-h-[calc(100vh-4rem)] xl:min-h-[calc(100vh-5rem)] flex items-center py-12 xl:py-0">
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row items-center justify-between gap-10 xl:gap-16">
-
           {/* ── Text column ──────────────────────────────────────────────── */}
           <motion.div
             variants={containerVariants}
@@ -72,10 +71,8 @@ export default function Home() {
               Third-year Software Engineering student shipping production-grade
               systems — AI-powered browser automation, microservice
               architectures, and real-time full-stack apps. Co-founder of{" "}
-              <span className="text-white/85 font-medium">
-                DevLev
-              </span>
-              , JCT&apos;s developer community. Looking for a student or
+              <span className="text-white/85 font-medium">DevLev</span>,
+              JCT&apos;s developer community. Looking for a student or
               entry-level role to build things that matter.
             </motion.p>
 
@@ -90,7 +87,7 @@ export default function Home() {
                 className="uppercase tracking-widest text-xs font-semibold rounded-xl px-6 h-12 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 w-full sm:w-auto"
               >
                 <a
-                  href="/assets/resume/Resume.pdf"
+                  href="/assets/resume/resume_new.pdf"
                   download="Daniel Pilant Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -119,7 +116,6 @@ export default function Home() {
           >
             <Photo />
           </motion.div>
-
         </div>
       </div>
     </section>
