@@ -99,7 +99,7 @@ export default function Home() {
                 className="uppercase tracking-widest text-xs font-semibold rounded-xl px-6 h-12 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 w-full sm:w-auto"
               >
                 <a
-                  href="/assets/resume/resume_new.pdf"
+                  href="/assets/resume/resume.pdf"
                   download="Daniel Pilant Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
