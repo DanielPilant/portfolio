@@ -69,75 +69,65 @@ export function PhysicsCanvas({ floorRef }: Props) {
       );
       Matter.Composite.add(engine.world, [ground]);
 
-      // ── Mouse interaction ──────────────────────────────────────────────────
+      // ── Mouse interaction (desktop only) ──────────────────────────────────
+      // Canvas defaults to pointer-events:none so it never blocks clicks or
+      // touch scrolling. We listen on `document` (which fires regardless of
+      // canvas pointer-events) and flip the canvas to `auto` only while the
+      // cursor is actually over a body. Touch devices skip this entirely.
 
-      const mouse = Matter.Mouse.create(canvas);
+      const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
 
-      // Correct mouse position for high-DPI canvases
-      Matter.Mouse.setScale(mouse, {
-        x: 1 / (window.devicePixelRatio ?? 1),
-        y: 1 / (window.devicePixelRatio ?? 1),
-      });
+      let onDocMouseMove: ((e: MouseEvent) => void) | null = null;
+      let onDocMouseUp:   (() => void) | null = null;
 
-      const mouseConstraint = Matter.MouseConstraint.create(engine, {
-        mouse,
-        constraint: {
-          stiffness: 0.18,
-          damping:   0.1,
-          render:    { visible: false },
-        },
-      });
-      Matter.Composite.add(engine.world, mouseConstraint);
+      if (!isTouch) {
+        const mouse = Matter.Mouse.create(canvas);
+        Matter.Mouse.setScale(mouse, {
+          x: 1 / (window.devicePixelRatio ?? 1),
+          y: 1 / (window.devicePixelRatio ?? 1),
+        });
 
-      // ── Hit-test pass-through ──────────────────────────────────────────────
-      // If the user clicks empty space (no body under cursor), temporarily
-      // remove pointer-events so the click reaches buttons/links underneath.
+        const mouseConstraint = Matter.MouseConstraint.create(engine, {
+          mouse,
+          constraint: { stiffness: 0.18, damping: 0.1, render: { visible: false } },
+        });
+        Matter.Composite.add(engine.world, mouseConstraint);
 
-      const onMouseDown = (e: MouseEvent) => {
-        const rect    = canvas.getBoundingClientRect();
-        const dpr     = window.devicePixelRatio ?? 1;
-        const point   = {
-          x: (e.clientX - rect.left) / dpr,
-          y: (e.clientY - rect.top)  / dpr,
+        onDocMouseMove = (e: MouseEvent) => {
+          // While dragging, keep the canvas active until release
+          if (mouseConstraint.body) {
+            canvas.style.cursor = "grabbing";
+            return;
+          }
+          const rect  = canvas.getBoundingClientRect();
+          const dpr   = window.devicePixelRatio ?? 1;
+          const point = { x: (e.clientX - rect.left) / dpr, y: (e.clientY - rect.top) / dpr };
+
+          // Only check when the cursor is actually inside the canvas bounds
+          const inside =
+            e.clientX >= rect.left && e.clientX <= rect.right &&
+            e.clientY >= rect.top  && e.clientY <= rect.bottom;
+
+          if (!inside) {
+            canvas.style.pointerEvents = "none";
+            return;
+          }
+
+          const dynamic = Matter.Composite.allBodies(engine.world).filter((b) => !b.isStatic);
+          const hit = Matter.Query.point(dynamic, point).length > 0;
+
+          canvas.style.pointerEvents = hit ? "auto" : "none";
+          canvas.style.cursor        = hit ? "grab" : "default";
         };
-        const dynamic = Matter.Composite.allBodies(engine.world).filter(
-          (b) => !b.isStatic,
-        );
-        const hit = Matter.Query.point(dynamic, point);
 
-        if (hit.length === 0) {
-          canvas.style.pointerEvents = "none";
-          document.addEventListener(
-            "mouseup",
-            () => { canvas.style.pointerEvents = "auto"; },
-            { once: true },
-          );
-        }
-      };
-
-      canvas.addEventListener("mousedown", onMouseDown, { capture: true });
-
-      // ── Cursor feedback ────────────────────────────────────────────────────
-
-      const onMouseMove = (e: MouseEvent) => {
-        if (mouseConstraint.body) {
-          canvas.style.cursor = "grabbing";
-          return;
-        }
-        const rect    = canvas.getBoundingClientRect();
-        const dpr     = window.devicePixelRatio ?? 1;
-        const point   = {
-          x: (e.clientX - rect.left) / dpr,
-          y: (e.clientY - rect.top)  / dpr,
+        // After releasing a dragged shape, fall back to none until cursor moves
+        onDocMouseUp = () => {
+          if (!mouseConstraint.body) canvas.style.pointerEvents = "none";
         };
-        const dynamic = Matter.Composite.allBodies(engine.world).filter(
-          (b) => !b.isStatic,
-        );
-        const hit = Matter.Query.point(dynamic, point);
-        canvas.style.cursor = hit.length > 0 ? "grab" : "default";
-      };
 
-      canvas.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mousemove", onDocMouseMove);
+        document.addEventListener("mouseup",   onDocMouseUp);
+      }
 
       // ── Shape spawner ──────────────────────────────────────────────────────
 
@@ -199,8 +189,8 @@ export function PhysicsCanvas({ floorRef }: Props) {
 
       innerCleanup = () => {
         clearInterval(interval);
-        canvas.removeEventListener("mousedown", onMouseDown, { capture: true });
-        canvas.removeEventListener("mousemove", onMouseMove);
+        if (onDocMouseMove) document.removeEventListener("mousemove", onDocMouseMove);
+        if (onDocMouseUp)   document.removeEventListener("mouseup",   onDocMouseUp);
         Matter.Render.stop(render);
         Matter.Runner.stop(runner);
         Matter.Engine.clear(engine);
@@ -217,7 +207,7 @@ export function PhysicsCanvas({ floorRef }: Props) {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full"
-      style={{ zIndex: 20, pointerEvents: "auto" }}
+      style={{ zIndex: 20, pointerEvents: "none" }}
     />
   );
 }
