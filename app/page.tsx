@@ -7,6 +7,7 @@ import { FiDownload } from "react-icons/fi";
 import Socials from "@/components/Socials";
 import Photo from "@/components/Photo";
 import { PhysicsCanvas } from "@/components/PhysicsCanvas";
+import { TypingQuotes } from "@/components/TypingQuotes";
 
 // ─── Animation variants ────────────────────────────────────────────────────────
 
@@ -59,7 +60,7 @@ export default function Home() {
             </motion.div>
 
             {/* Headline */}
-            <motion.h1 variants={itemVariants} className="mb-5">
+            <motion.h1 variants={itemVariants} className="mb-3">
               Hello, I&apos;m <br />
               <span
                 style={{
@@ -73,6 +74,11 @@ export default function Home() {
                 Daniel Pilant
               </span>
             </motion.h1>
+
+            {/* Rotating tagline */}
+            <motion.div variants={itemVariants} className="mb-6 min-h-[1.6em]">
+              <TypingQuotes />
+            </motion.div>
 
             {/* Bio */}
             <motion.p
