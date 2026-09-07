@@ -30,6 +30,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          # אם החיבור נכשל עם שגיאת TLS, תוסיף:  protocol: ftps
+          protocol: ftps # Pure-FTPd on the host advertises TLS
+          # אם נכשל עם שגיאת תעודה, תוסיף כאן:  security: loose
           server-dir: /portfolio/ # המיקום המדויק בשרת (ה-FTP נוחת כבר בתוך שורש האתר)
           local-dir: ./out/
