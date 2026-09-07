@@ -7,7 +7,7 @@ on:
 
 jobs:
   web-deploy:
-    name---: Deploy
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Get code
@@ -17,10 +17,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
 
       - name: Install dependencies & Build
         run: |
-          npm install
+          npm ci
           npm run build
 
       - name: Sync files to FTP
@@ -29,5 +30,6 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /public_html/portfolio/ # המיקום המדויק בשרת
+          # אם החיבור נכשל עם שגיאת TLS, תוסיף:  protocol: ftps
+          server-dir: /portfolio/ # המיקום המדויק בשרת (ה-FTP נוחת כבר בתוך שורש האתר)
           local-dir: ./out/
