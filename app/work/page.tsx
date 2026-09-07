@@ -212,6 +212,26 @@ const courseProjects: Project[] = [
     image: "/assets/images/FS_proj_4/4.png",
     live: "",
     github: "https://github.com/DanielPilant/project_4",
+    caseStudy: "/work/visual-text-editor",
+  },
+  {
+    num: "05",
+    category: "React / full-stack CRUD",
+    title: "Full-Stack Dashboard",
+    description:
+      "Project 5 of 7 and my first taste of full-stack architecture: a React 19 SPA backed by a json-server mock REST API. The focus was understanding how a real client-server app fits together — a single fetch-wrapper API layer that every component funnels through, foreign-key relationships across six resources (users, todos, posts, comments, albums, photos) exposed as nested REST routes (e.g. /users/:id/todos, /albums/:id/photos), and server-side query features like filtering, pagination, and sorting to surface 'latest activity'. Auth is client-side via React Context + localStorage, and a ProtectedRoute gate blocks each page by ownership so a user can only ever see their own data. Organised feature-first — Albums, Posts, and Todos are each their own folder with a page component, sub-components, and a data-fetching hook.",
+    stack: [
+      { name: "React 19" },
+      { name: "Vite" },
+      { name: "React Router 7" },
+      { name: "json-server" },
+      { name: "REST API" },
+      { name: "Context API" },
+      { name: "localStorage" },
+    ],
+    image: "/assets/images/FS_proj_5/5.png",
+    live: "",
+    github: "https://github.com/DanielPilant/project_5",
   },
 ];
 
@@ -264,7 +284,7 @@ function CompactProjectRow({
 }) {
   const [open, setOpen] = useState(false);
   const hasImage = !!project.image;
-  const hasLinks = project.live || project.github;
+  const hasLinks = project.live || project.github || project.caseStudy;
   const PILL_PREVIEW = 3;
 
   return (
@@ -376,6 +396,21 @@ function CompactProjectRow({
                 {hasLinks && (
                   <TooltipProvider delayDuration={200}>
                     <div className="flex items-center gap-3 flex-wrap">
+                      {project.caseStudy && (
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Link
+                              href={project.caseStudy}
+                              className="inline-flex items-center gap-2 text-xs text-accent border border-accent/40 hover:border-accent/60 rounded-full px-4 py-2 bg-accent/[0.08] hover:bg-accent/[0.14] transition-all duration-300 font-medium"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              <BsArrowUpRight className="text-sm" />
+                              Read case study
+                            </Link>
+                          </TooltipTrigger>
+                          <TooltipContent>Architecture, decisions, deep-dives</TooltipContent>
+                        </Tooltip>
+                      )}
                       {project.live && (
                         <Tooltip>
                           <TooltipTrigger asChild>

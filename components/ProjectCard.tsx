@@ -21,6 +21,7 @@ export interface Project {
   image: string;
   live: string;
   github: string;
+  caseStudy?: string;
 }
 
 // Consumed by the parent stagger container in work/page.tsx
@@ -41,7 +42,7 @@ export function ProjectCard({
   onImageClick?: (src: string, alt: string) => void;
 }) {
   const hasImage = !!project.image;
-  const hasLinks = project.live || project.github;
+  const hasLinks = project.live || project.github || project.caseStudy;
 
   return (
     <motion.div
@@ -120,6 +121,20 @@ export function ProjectCard({
         {hasLinks && (
           <TooltipProvider delayDuration={200}>
             <div className="flex items-center gap-3 flex-wrap">
+              {project.caseStudy && (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Link
+                      href={project.caseStudy}
+                      className="inline-flex items-center gap-2 text-xs text-accent border border-accent/40 hover:border-accent/60 rounded-full px-4 py-2 bg-accent/[0.08] hover:bg-accent/[0.14] transition-all duration-300 font-medium"
+                    >
+                      <BsArrowUpRight className="text-sm" />
+                      Read case study
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent>Architecture, decisions, deep-dives</TooltipContent>
+                </Tooltip>
+              )}
               {project.live && (
                 <Tooltip>
                   <TooltipTrigger asChild>
